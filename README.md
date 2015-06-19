@@ -7,4 +7,5 @@ Mais informações no DOC
 * **src**: Programa Original
 * **dist**: Programa Refatorado
 
+___
 Mais informações no DOC
