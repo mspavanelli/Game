@@ -13,7 +13,7 @@ Mais informações no DOC
 
 - [x] Análise
 - [ ] Aplicar Padrões
-	- [ ] Singleton
+	- [ ] State
 	- [ ] Strategy
 - [ ] Criar novo inimigo
 - [ ] Power-ups
