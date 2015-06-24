@@ -11,18 +11,19 @@ Mais informações no DOC
 
 ### Código
 
-- [] Aplicar Padrões
-	- [] Singleton
-	- [] Strategy
-- [] Criar novo inimigo
-- [] Power-ups
+- [x] Análise
+- [ ] Aplicar Padrões
+	- [ ] Singleton
+	- [ ] Strategy
+- [ ] Criar novo inimigo
+- [ ] Power-ups
 
 ### Relatório
 
-- [] Críticas ao código original
-- [] Descrição e justificativa da nova estrutura remodelada
-- [] Descrição do uso da **API de Coleções**
-- [] Descrição e justificativa de aplicação dos **padrões de projeto**
+- [ ] Críticas ao código original
+- [ ] Descrição e justificativa da nova estrutura remodelada
+- [ ] Descrição do uso da **API de Coleções**
+- [ ] Descrição e justificativa de aplicação dos **padrões de projeto**
 
 ___
 Mais informações no DOC
