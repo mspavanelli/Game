@@ -6,9 +6,6 @@ public class InimigoDois extends Inimigo {
 	public InimigoDois(int contagem_inimigos, coordenada_x_proximo){
 		this.contagem_inimigos=contagem_inimigos;
 		this.coordenada_x_proximo=coordenada_x_proximo;
-		super(velocidade);
-		super(angulo);
-		super(velocidade_rotacao);
-		super(next_enemy);
+		super(velocidade, angulo, velocidade_rotacao, next_enemy);
 	}
 }
