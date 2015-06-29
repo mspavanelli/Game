@@ -12,6 +12,7 @@ Mais informações no DOC
 ### Código
 
 - [x] Análise
+- [x] Separar o código em classes
 - [ ] Aplicar Padrões
 	- [ ] State
 	- [ ] Strategy
