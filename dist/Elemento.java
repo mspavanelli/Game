@@ -7,4 +7,10 @@ abstract public class Elemento implements Drawable {
 	int estado;
 	double coordenada_x;
 	double coordenada_y;
+	
+	public Elemento(int estado, double coordenada_x, double coordenada_y){
+		this.estado=estado;
+		this.coordenada_x=coordenada_x;
+		this.coordenada_y=coordenada_y;
+	}
 }
