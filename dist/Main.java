@@ -13,23 +13,17 @@ public class Main {
 	/* Espera, sem fazer nada, até que o instante de tempo atual seja */
 	/* maior ou igual ao instante especificado no parâmetro "time.    */
 	
-	public static void busyWait(long time){
-		
+	public static void busyWait(long time) {
 		while(System.currentTimeMillis() < time) Thread.yield();
 	}
 	
 	/* Encontra e devolve o primeiro índice do  */
 	/* array referente a uma posição "inativa". */
 	
-	public static int findFreeIndex(int [] stateArray){
-		
-		int i;
-		
-		for(i = 0; i < stateArray.length; i++){
-			
+	public static int findFreeIndex(int [] stateArray){	
+		int i;	
+		for(i = 0; i < stateArray.length; i++)	
 			if(stateArray[i] == INACTIVE) break;
-		}
-		
 		return i;
 	}
 	
@@ -208,7 +202,7 @@ public class Main {
 					
 					if(dist < (player_radius + e_projectile_radius) * 0.8){
 						
-						player_state = EXPLODING;
+						// player_state = EXPLODING;
 						player_explosion_start = currentTime;
 						player_explosion_end = currentTime + 2000;
 					}
@@ -224,7 +218,7 @@ public class Main {
 					
 					if(dist < (player_radius + enemy1_radius) * 0.8){
 						
-						player_state = EXPLODING;
+						// player_state = EXPLODING;
 						player_explosion_start = currentTime;
 						player_explosion_end = currentTime + 2000;
 					}
@@ -238,7 +232,7 @@ public class Main {
 					
 					if(dist < (player_radius + enemy2_radius) * 0.8){
 						
-						player_state = EXPLODING;
+						// player_state = EXPLODING;
 						player_explosion_start = currentTime;
 						player_explosion_end = currentTime + 2000;
 					}
