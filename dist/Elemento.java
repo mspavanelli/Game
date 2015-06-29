@@ -14,5 +14,4 @@ abstract public class Elemento implements Drawable {
 		this.coordenada_y = coordenada_y;
 	}
 
-	abstract void desenha();
 }
