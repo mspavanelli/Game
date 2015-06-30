@@ -79,6 +79,11 @@ public class Main {
 
 		/* variáveis dos inimigos tipo 1 */
 		
+		ArrayList<InimigoUm> inimigos1 = new ArrayList<>();
+		for ( int i = 0; i < 10; i++ ) {
+			// inimigos1.add( new InimigoUm(Elemento.INACTIVE, coordenada_x, coordenada_y, currentTime, currentTime + 500, (long) (currentTime + 200 + Math.random() * 500), 9.0, 0.0, 3 * Math.PI / 2) );
+		}
+
 		int [] enemy1_states = new int[10];						// estados
 		double [] enemy1_X = new double[10];					// coordenadas x
 		double [] enemy1_Y = new double[10];					// coordenadas y
