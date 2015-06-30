@@ -5,12 +5,14 @@ public class Player extends Agente {
 
 	public double velocidade_x;
 	public double velocidade_y;
+	public long nextShot;
 	public LinkedList<ProjetilPlayer> projeteis;
 		
-	public Player(int estado, double coordenada_x, double coordenada_y, double explosion_start, double explosion_end, double nextShot, double raio, double velocidade_x, double velocidade_y) {
-		super(estado, coordenada_x, coordenada_y, explosion_start, explosion_end, nextShot, raio);
+	public Player(int estado, double coordenada_x, double coordenada_y, double explosion_start, double explosion_end, long nextShot, double raio, double velocidade_x, double velocidade_y) {
+		super(estado, coordenada_x, coordenada_y, explosion_start, explosion_end, raio);
 		this.velocidade_x = velocidade_x;
 		this.velocidade_y = velocidade_y;
+		this.nextShot = nextShot;
 		projeteis = new LinkedList<>();
 		for (int i = 0; i < 10; i++) {
 			projeteis.add( new ProjetilPlayer(Elemento.INACTIVE, coordenada_x, coordenada_y, 0.0, -1.0) );

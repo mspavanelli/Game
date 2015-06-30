@@ -99,6 +99,11 @@ public class Main {
 		long nextEnemy1 = currentTime + 2000;					// instante em que um novo inimigo 1 deve aparecer
 		
 		/* variáveis dos inimigos tipo 2 */
+
+		ArrayList<InimigoDois> inimigos2 = new ArrayList<>();
+		for ( int i = 0; i < 10; i++ ) {
+			inimigos2.add( new InimigoDois(Elemento.INACTIVE, GameLib.WIDTH * 0.20, -10.0, currentTime, currentTime + 500, 12.0, 0.42, (3 * Math.PI) / 2, 0, currentTime + 7000) );
+		}
 		
 		int [] enemy2_states = new int[10];						// estados
 		double [] enemy2_X = new double[10];					// coordenadas x
@@ -123,7 +128,7 @@ public class Main {
 		double e_projectile_radius = 2.0;						// raio (tamanho dos projéteis inimigos)
 		
 		/* estrelas que formam o fundo de primeiro plano */
-		
+	
 		ArrayList<PrimeiroPlano> primeiroPlano = new ArrayList<>();
 		for ( int i = 0; i < 20; i++ )
 			primeiroPlano.add( new PrimeiroPlano( 0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.070, 0.0) );
