@@ -4,6 +4,7 @@ public class PrimeiroPlano extends Fundo {
 
 	static double count;
 	static double speed;
+	
 	public PrimeiroPlano(int estado, double coordenada_x, double coordenada_y, double speed, double count) {
 		super(estado, coordenada_x, coordenada_y);
 		this.count = count;

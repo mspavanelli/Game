@@ -6,17 +6,14 @@ public class Player extends Agente {
 	public double velocidade_x;
 	public double velocidade_y;
 		
-	public Player(int estado, double coordenada_x, double coordenada_y,
-			double explosion_start, double explosion_end, double nextShot,
-			double raio, double velocidade_x, double velocidade_y) {
-		super(estado, coordenada_x, coordenada_y, explosion_start,
-				explosion_end, nextShot, raio);
+	public Player(int estado, double coordenada_x, double coordenada_y, double explosion_start, double explosion_end, double nextShot, double raio, double velocidade_x, double velocidade_y) {
+		super(estado, coordenada_x, coordenada_y, explosion_start, explosion_end, nextShot, raio);
 		this.velocidade_x = velocidade_x;
 		this.velocidade_y = velocidade_y;
 	}
 
 	public void movimenta() {
-		if(estado == Elemento.ACTIVE){
+		if(estado == Elemento.ACTIVE) {
 			
 			long delta = System.currentTimeMillis() - Main.currentTime;
 			if(GameLib.iskeyPressed(GameLib.KEY_UP)) coordenada_y -= delta * velocidade_y;
@@ -51,6 +48,7 @@ public class Player extends Agente {
 		if(coordenada_x >= GameLib.WIDTH) coordenada_x = GameLib.WIDTH - 1;
 		if(coordenada_y < 25.0) coordenada_y = 25.0;
 		if(coordenada_y >= GameLib.HEIGHT) coordenada_y = GameLib.HEIGHT - 1;
+
 	}
 	
 	public void desenha() {

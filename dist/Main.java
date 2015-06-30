@@ -561,7 +561,7 @@ public class Main {
 			}
 			
 			/* desenhando projeteis (inimigos) */
-		
+			// já implementado
 			for(int i = 0; i < e_projectile_states.length; i++){
 				
 				if(e_projectile_states[i] == Elemento.ACTIVE){
