@@ -7,7 +7,7 @@ public class ProjetilPlayer extends Projetil {
 	}
 
 	public void desenha() {
-		if(estado[i] == Elemento.ACTIVE){		
+		if(estado == Elemento.ACTIVE){		
 			GameLib.setColor(Color.GREEN);
 			GameLib.drawLine(coordenada_x, coordenada_y - 5, coordenada_x, coordenada_y + 5);
 			GameLib.drawLine(coordenada_x - 1, coordenada_y - 3, coordenada_x - 1, coordenada_y + 3);

@@ -1,15 +1,20 @@
+import java.util.*;
 import java.awt.Color;
-
 
 public class Player extends Agente {
 
 	public double velocidade_x;
 	public double velocidade_y;
+	public LinkedList<ProjetilPlayer> projeteis;
 		
 	public Player(int estado, double coordenada_x, double coordenada_y, double explosion_start, double explosion_end, double nextShot, double raio, double velocidade_x, double velocidade_y) {
 		super(estado, coordenada_x, coordenada_y, explosion_start, explosion_end, nextShot, raio);
 		this.velocidade_x = velocidade_x;
 		this.velocidade_y = velocidade_y;
+		projeteis = new LinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			projeteis.add( new ProjetilPlayer(Elemento.INACTIVE, coordenada_x, coordenada_y, 0.0, -1.0) );
+		}
 	}
 
 	public void movimenta() {

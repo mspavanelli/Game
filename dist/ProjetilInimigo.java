@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class ProjetilInimigo extends Projetil {
 
 	double raio;
