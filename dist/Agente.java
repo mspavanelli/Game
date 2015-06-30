@@ -11,4 +11,6 @@ public abstract class Agente extends Elemento {
 		this.raio = raio;
 	}
 
+	public abstract void localizacao();
+
 }

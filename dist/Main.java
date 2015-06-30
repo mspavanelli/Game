@@ -501,7 +501,7 @@ public class Main {
 			/********************************************/
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
-			
+			player.movimenta(currentTime, delta);
 			if(player_state == Elemento.ACTIVE){
 				
 				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
@@ -551,10 +551,17 @@ public class Main {
 			
 			/* desenhando player */
 			player.desenha();
-			
+
+			// if ( currentTime % 360 == 0 ) {
+			// 	player.localizacao();
+			// 	for (ProjetilPlayer pp : player.projeteis) pp.localizacao();
+			// }
+
 			/* deenhando projeteis (player) */
 			
-			for(int i = 0; i < projectile_states.length; i++){
+			for (ProjetilPlayer pp : player.projeteis) pp.desenha();
+
+			for(int i = 0; i < projectile_states.length; i++) {
 				
 				if(projectile_states[i] == Elemento.ACTIVE){
 					
@@ -566,7 +573,7 @@ public class Main {
 			}
 			
 			/* desenhando projeteis (inimigos) */
-			// já implementado
+			
 			for(int i = 0; i < e_projectile_states.length; i++){
 				
 				if(e_projectile_states[i] == Elemento.ACTIVE){
@@ -579,6 +586,7 @@ public class Main {
 			/* desenhando inimigos (tipo 1) */
 			
 			for (InimigoUm i : inimigos1) i.desenha();
+
 			for(int i = 0; i < enemy1_states.length; i++){
 				
 				if(enemy1_states[i] == Elemento.EXPLODING){
@@ -596,6 +604,8 @@ public class Main {
 			
 			/* desenhando inimigos (tipo 2) */
 			
+			for ( InimigoDois d : inimigos2 ) d.desenha();
+
 			for(int i = 0; i < enemy2_states.length; i++){
 				
 				if(enemy2_states[i] == Elemento.EXPLODING){
