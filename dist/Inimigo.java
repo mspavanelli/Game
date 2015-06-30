@@ -17,10 +17,4 @@ public abstract class Inimigo extends Agente {
 		this.next_enemy = next_enemy;
 	}
 
-	public desenha(){
-		if(e_projectile_states[i] == Elemento.ACTIVE){
-			GameLib.setColor(Color.RED);
-			GameLib.drawCircle(e_projectile_X[i], e_projectile_Y[i], e_projectile_radius);
-		}
-	}
 }

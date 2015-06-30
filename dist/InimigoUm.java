@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class InimigoUm extends Inimigo {
 
 
@@ -10,13 +12,13 @@ public class InimigoUm extends Inimigo {
 	}
 
 	public void desenha() {
-		if(enemy1_states[i] == Elemento.EXPLODING){
-			double alpha = (MainTeste.currentTime - enemy1_explosion_start[i]) / (enemy1_explosion_end[i] - enemy1_explosion_start[i]);
-			GameLib.drawExplosion(enemy1_X[i], enemy1_Y[i], alpha);
+		if(estado == Elemento.EXPLODING){
+			double alpha = (Main.currentTime - explosion_start) / (explosion_end - explosion_start);
+			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);
 		}
-		if(enemy1_states[i] == Elemento.ACTIVE){
+		if(estado == Elemento.ACTIVE){
 			GameLib.setColor(Color.CYAN);
-			GameLib.drawCircle(enemy1_X[i], enemy1_Y[i], enemy1_radius);
+			GameLib.drawCircle(coordenada_x, coordenada_y, raio);
 		}
 	}
 }

@@ -8,6 +8,5 @@ public abstract class Projetil extends Elemento {
 		super(estado, coordenada_x, coordenada_y);
 		this.velocidade_x = velocidade_x;
 		this.velocidade_y = velocidade_y;
-	}
-	
+	}	
 }

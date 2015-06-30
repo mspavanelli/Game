@@ -1,8 +1,9 @@
 import java.awt.Color;
 
-public class MainTeste {
+public class Main {
 	
 	public static long currentTime = System.currentTimeMillis();
+	public static boolean running = true;
 	/* Espera, sem fazer nada, até que o instante de tempo atual seja */
 	/* maior ou igual ao instante especificado no parâmetro "time.    */
 	
@@ -53,19 +54,19 @@ public class MainTeste {
 		long delta;
 		
 
-		Player player = new Player(Elemento.ACTIVE, GameLib.WIDTH / 2, GameLib.HEIGHT * 0.9, 0.25, 0.25, 12, 0, 0, currentTime);
+		Player player = new Player(Elemento.ACTIVE, GameLib.WIDTH / 2, GameLib.HEIGHT * 0.9, 0, 0, currentTime, 12.0, 0.25, 0.25 );
 		
 		/* variáveis do player */
 		
-//		int player_state = Elemento.ACTIVE;								// estado
-//		double player_X = GameLib.WIDTH / 2;					// coordenada x
-//		double player_Y = GameLib.HEIGHT * 0.90;				// coordenada y
-//		double player_VX = 0.25;								// velocidade no eixo x
-//		double player_VY = 0.25;								// velocidade no eixo y
-//		double player_radius = 12.0;							// raio (tamanho aproximado do player)
-//		double player_explosion_start = 0;						// instante do início da explosão
-//		double player_explosion_end = 0;						// instante do final da explosão
-//		long player_nextShot = currentTime;						// instante a partir do qual pode haver um próximo tiro
+		int player_state = Elemento.ACTIVE;						// estado
+		double player_X = GameLib.WIDTH / 2;					// coordenada x
+		double player_Y = GameLib.HEIGHT * 0.90;				// coordenada y
+		double player_VX = 0.25;								// velocidade no eixo x
+		double player_VY = 0.25;								// velocidade no eixo y
+		double player_radius = 12.0;							// raio (tamanho aproximado do player)
+		double player_explosion_start = 0;						// instante do início da explosão
+		double player_explosion_end = 0;						// instante do final da explosão
+		long player_nextShot = currentTime;						// instante a partir do qual pode haver um próximo tiro
 
 		/* variáveis dos projéteis disparados pelo player */
 		
@@ -499,32 +500,33 @@ public class MainTeste {
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
 			
-			if(player_state == Elemento.ACTIVE){
-				
-				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) player_Y += delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) player_X -= delta * player_VX;
-				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) player_X += delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-					
-					if(currentTime > player_nextShot){
-						
-						int free = findFreeIndex(projectile_states);
-												
-						if(free < projectile_states.length){
-							
-							projectile_X[free] = player_X;
-							projectile_Y[free] = player_Y - 2 * player_radius;
-							projectile_VX[free] = 0.0;
-							projectile_VY[free] = -1.0;
-							projectile_states[free] = 1;
-							player_nextShot = currentTime + 100;
-						}
-					}	
-				}
-			}
-			
-			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
+			player.movimenta();
+//			if(player_state == Elemento.ACTIVE){
+//				
+//				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
+//				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) player_Y += delta * player_VY;
+//				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) player_X -= delta * player_VX;
+//				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) player_X += delta * player_VY;
+//				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
+//					
+//					if(currentTime > player_nextShot){
+//						
+//						int free = findFreeIndex(projectile_states);
+//												
+//						if(free < projectile_states.length){
+//							
+//							projectile_X[free] = player_X;
+//							projectile_Y[free] = player_Y - 2 * player_radius;
+//							projectile_VX[free] = 0.0;
+//							projectile_VY[free] = -1.0;
+//							projectile_states[free] = 1;
+//							player_nextShot = currentTime + 100;
+//						}
+//					}	
+//				}
+//			}
+//			
+//			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
 			
 			/* Verificando se coordenadas do player ainda estão dentro	*/
 			/* da tela de jogo após processar entrada do usuário.       */
@@ -571,7 +573,7 @@ public class MainTeste {
 //				GameLib.setColor(Color.BLUE);
 //				GameLib.drawPlayer(player_X, player_Y, player_radius);
 //			}
-
+			player.desenha();
 			
 			/* deenhando projeteis (player) */
 			

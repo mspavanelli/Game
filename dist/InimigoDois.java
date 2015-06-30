@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class InimigoDois extends Inimigo {
 
 	private int contagem_inimigos;
@@ -13,14 +15,14 @@ public class InimigoDois extends Inimigo {
 	}
 
 	public void desenha() {
-		if(enemy2_states[i] == Elemento.EXPLODING){
-			double alpha = (MainTeste.currentTime - enemy2_explosion_start[i]) / (enemy2_explosion_end[i] - enemy2_explosion_start[i]);
-			GameLib.drawExplosion(enemy2_X[i], enemy2_Y[i], alpha);
+		if(estado == Elemento.EXPLODING){
+			double alpha = (Main.currentTime - explosion_start) / (explosion_end - explosion_start);
+			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);
 		}
 				
-		if(enemy2_states[i] == Elemento.ACTIVE){
+		if(estado == Elemento.ACTIVE){
 			GameLib.setColor(Color.MAGENTA);
-			GameLib.drawDiamond(enemy2_X[i], enemy2_Y[i], enemy2_radius);
+			GameLib.drawDiamond(coordenada_x, coordenada_y, raio);
 		}
 	}
 }
