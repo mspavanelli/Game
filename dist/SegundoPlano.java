@@ -1,6 +1,5 @@
 import java.awt.Color;
 
-
 public class SegundoPlano extends Fundo {
 
 	static double count;
