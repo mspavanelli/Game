@@ -1,3 +1,4 @@
+import java.util.*;
 import java.awt.Color;
 
 public class Main {
@@ -116,10 +117,10 @@ public class Main {
 		
 		/* estrelas que formam o fundo de primeiro plano */
 		
-		double [] background1_X = new double[20];
-		double [] background1_Y = new double[20];
-		double background1_speed = 0.070;
-		double background1_count = 0.0;
+		ArrayList<PrimeiroPlano> primeiroPlano = new ArrayList<>();
+		for ( int i = 0; i < 20; i++ )
+			primeiroPlano.add( new PrimeiroPlano( 0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.070, 0.0) );
+
 		
 		/* estrelas que formam o fundo de segundo plano */
 		
@@ -135,11 +136,11 @@ public class Main {
 		for(int i = 0; i < enemy1_states.length; i++) enemy1_states[i] = Elemento.INACTIVE;
 		for(int i = 0; i < enemy2_states.length; i++) enemy2_states[i] = Elemento.INACTIVE;
 		
-		for(int i = 0; i < background1_X.length; i++){
+		// for(int i = 0; i < background1_X.length; i++){
 			
-			background1_X[i] = Math.random() * GameLib.WIDTH;
-			background1_Y[i] = Math.random() * GameLib.HEIGHT;
-		}
+		// 	background1_X[i] = Math.random() * GameLib.WIDTH;
+		// 	background1_Y[i] = Math.random() * GameLib.HEIGHT;
+		// }
 		
 		for(int i = 0; i < background2_X.length; i++){
 			
@@ -185,7 +186,7 @@ public class Main {
 			/***************************/
 			/* Verificação de colisões */
 			/***************************/
-			player.desenha();
+
 			if(player_state == Elemento.ACTIVE){
 				
 				/* colisões player - projeteis (inimigo) */
@@ -500,33 +501,32 @@ public class Main {
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
 			
-			player.movimenta();
-//			if(player_state == Elemento.ACTIVE){
-//				
-//				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
-//				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) player_Y += delta * player_VY;
-//				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) player_X -= delta * player_VX;
-//				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) player_X += delta * player_VY;
-//				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-//					
-//					if(currentTime > player_nextShot){
-//						
-//						int free = findFreeIndex(projectile_states);
-//												
-//						if(free < projectile_states.length){
-//							
-//							projectile_X[free] = player_X;
-//							projectile_Y[free] = player_Y - 2 * player_radius;
-//							projectile_VX[free] = 0.0;
-//							projectile_VY[free] = -1.0;
-//							projectile_states[free] = 1;
-//							player_nextShot = currentTime + 100;
-//						}
-//					}	
-//				}
-//			}
-//			
-//			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
+			if(player_state == Elemento.ACTIVE){
+				
+				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
+				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) player_Y += delta * player_VY;
+				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) player_X -= delta * player_VX;
+				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) player_X += delta * player_VY;
+				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
+					
+					if(currentTime > player_nextShot){
+						
+						int free = findFreeIndex(projectile_states);
+												
+						if(free < projectile_states.length){
+							
+							projectile_X[free] = player_X;
+							projectile_Y[free] = player_Y - 2 * player_radius;
+							projectile_VX[free] = 0.0;
+							projectile_VY[free] = -1.0;
+							projectile_states[free] = 1;
+							player_nextShot = currentTime + 100;
+						}
+					}	
+				}
+			}
+			
+			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
 			
 			/* Verificando se coordenadas do player ainda estão dentro	*/
 			/* da tela de jogo após processar entrada do usuário.       */
@@ -551,28 +551,13 @@ public class Main {
 			}
 			
 			/* desenhando plano de fundo próximo */
+
+			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
+			for ( int i = 0; i < 20; i++ )
+				primeiroPlano.get(i).desenha();
 			
-			GameLib.setColor(Color.GRAY);
-			background1_count += background1_speed * delta;
-			
-			for(int i = 0; i < background1_X.length; i++){
-				
-				GameLib.fillRect(background1_X[i], (background1_Y[i] + background1_count) % GameLib.HEIGHT, 3, 3);
-			}
-						
 			/* desenhando player */
 		
-			
-//			if(player_state == Elemento.EXPLODING){
-//				
-//				double alpha = (currentTime - player_explosion_start) / (player_explosion_end - player_explosion_start);
-//				GameLib.drawExplosion(player_X, player_Y, alpha);
-//			}
-//			else{
-//				
-//				GameLib.setColor(Color.BLUE);
-//				GameLib.drawPlayer(player_X, player_Y, player_radius);
-//			}
 			player.desenha();
 			
 			/* deenhando projeteis (player) */
