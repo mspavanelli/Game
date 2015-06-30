@@ -29,7 +29,7 @@ Mais informações no DOC
 - [ ] Descrição e justificativa de aplicação dos **padrões de projeto**
 
 ___
-Mais informações no DOC
+Mais informações no PDF
 
 KAIO TESTE!!!
 KAIÃO ->Viadão!
