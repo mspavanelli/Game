@@ -81,9 +81,10 @@ public class Main {
 		
 		ArrayList<InimigoUm> inimigos1 = new ArrayList<>();
 		for ( int i = 0; i < 10; i++ ) {
-			
+			inimigos1.add( new InimigoUm(Elemento.INACTIVE,
+				Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, currentTime, currentTime + 500,
+				currentTime + 500, 9.0, 0.20 + Math.random() * 0.15, 3 * Math.PI / 2,0.0, currentTime + 2000) );
 		}
-		inimigos1.add( new InimigoUm() );
 		
 		int [] enemy1_states = new int[10];						// estados
 		double [] enemy1_X = new double[10];					// coordenadas x
@@ -126,7 +127,6 @@ public class Main {
 		ArrayList<PrimeiroPlano> primeiroPlano = new ArrayList<>();
 		for ( int i = 0; i < 20; i++ )
 			primeiroPlano.add( new PrimeiroPlano( 0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.070, 0.0) );
-
 		
 		/* estrelas que formam o fundo de segundo plano */
 		
@@ -537,20 +537,14 @@ public class Main {
 			/*******************/
 			
 			/* desenhando plano fundo distante */
-
 			SegundoPlano.count += SegundoPlano.speed * delta;
-			for ( int i = 0; i < 50; i++ ) {
-				segundoPlano.get(i).desenha();
-			}
+			for (SegundoPlano s : segundoPlano) s.desenha();
 			
 			/* desenhando plano de fundo próximo */
-
 			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
-			for ( int i = 0; i < 20; i++ )
-				primeiroPlano.get(i).desenha();
+			for (PrimeiroPlano p : primeiroPlano) p.desenha();
 			
 			/* desenhando player */
-		
 			player.desenha();
 			
 			/* deenhando projeteis (player) */
@@ -579,6 +573,7 @@ public class Main {
 			
 			/* desenhando inimigos (tipo 1) */
 			
+			for (InimigoUm i : inimigos1) i.desenha();
 			for(int i = 0; i < enemy1_states.length; i++){
 				
 				if(enemy1_states[i] == Elemento.EXPLODING){
