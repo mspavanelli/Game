@@ -14,8 +14,10 @@ Mais informações no DOC
 - [x] Análise
 - [x] Separar o código em classes
 - [ ] Aplicar Padrões
+	- [ ] Singleton
 	- [ ] State
 	- [ ] Strategy
+	- [ ] Observer
 - [ ] Criar novo inimigo
 - [ ] Power-ups
 
@@ -29,6 +31,7 @@ Mais informações no DOC
 ___
 Mais informações no DOC
 
-
 KAIO TESTE!!!
 KAIÃO ->Viadão!
+
+
