@@ -13,7 +13,14 @@ public class InimigoDois extends Inimigo {
 	}
 
 	public void desenha() {
-
+		if(enemy2_states[i] == Elemento.EXPLODING){
+			double alpha = (MainTeste.currentTime - enemy2_explosion_start[i]) / (enemy2_explosion_end[i] - enemy2_explosion_start[i]);
+			GameLib.drawExplosion(enemy2_X[i], enemy2_Y[i], alpha);
+		}
+				
+		if(enemy2_states[i] == Elemento.ACTIVE){
+			GameLib.setColor(Color.MAGENTA);
+			GameLib.drawDiamond(enemy2_X[i], enemy2_Y[i], enemy2_radius);
+		}
 	}
-
 }

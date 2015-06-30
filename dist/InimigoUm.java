@@ -10,6 +10,13 @@ public class InimigoUm extends Inimigo {
 	}
 
 	public void desenha() {
-
+		if(enemy1_states[i] == Elemento.EXPLODING){
+			double alpha = (MainTeste.currentTime - enemy1_explosion_start[i]) / (enemy1_explosion_end[i] - enemy1_explosion_start[i]);
+			GameLib.drawExplosion(enemy1_X[i], enemy1_Y[i], alpha);
+		}
+		if(enemy1_states[i] == Elemento.ACTIVE){
+			GameLib.setColor(Color.CYAN);
+			GameLib.drawCircle(enemy1_X[i], enemy1_Y[i], enemy1_radius);
+		}
 	}
 }
