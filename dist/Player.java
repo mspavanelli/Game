@@ -19,10 +19,6 @@ public class Player extends Agente {
 		}
 	}
 
-	public void localizacao() {
-		System.out.printf( "Player: (%f, %f)", coordenada_x, - coordenada_y );
-	}
-
 	public void movimenta( double currentTime, long delta ) {
 		if(estado == Elemento.ACTIVE) {
 			
@@ -33,17 +29,17 @@ public class Player extends Agente {
 			if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
 				if(currentTime > nextShot){
 					
-					int free = findFreeIndex(projectile_states);
+					// int free = findFreeIndex(projectile_states);
 											
-					if(free < projectile_states.length){
+					// if(free < projectile_states.length){
 						
-						projectile_X[free] = coordenada_x;
-						projectile_Y[free] = coordenada_y - 2 * raio;
-						projectile_VX[free] = 0.0;
-						projectile_VY[free] = -1.0;
-						projectile_states[free] = 1;
-						nextShot = currentTime + 100;
-					}
+					// 	projectile_X[free] = coordenada_x;
+					// 	projectile_Y[free] = coordenada_y - 2 * raio;
+					// 	projectile_VX[free] = 0.0;
+					// 	projectile_VY[free] = -1.0;
+					// 	projectile_states[free] = 1;
+					// 	nextShot = currentTime + 100;
+					// }
 				}	
 			}
 		}
@@ -69,6 +65,5 @@ public class Player extends Agente {
 			GameLib.setColor(Color.BLUE);
 			GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
 		}
-		// coordenada_y--;
 	}
 }

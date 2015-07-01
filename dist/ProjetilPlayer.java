@@ -6,8 +6,9 @@ public class ProjetilPlayer extends Projetil {
 		super(estado, coordenada_x, coordenada_y, velocidade_x, velocidade_y);
 	}
 
-	public void localizacao() {
-		System.out.printf( "Projetil: (%f, %f)", coordenada_x, - coordenada_y );
+	public double[] localizacao() {
+		double [] v = new double[2];
+		return v;
 	}
 
 	public void desenha() {

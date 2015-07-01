@@ -76,7 +76,7 @@ public class Main {
 		double [] projectile_Y = new double[10];				// coordenadas y
 		double [] projectile_VX = new double[10];				// velocidades no eixo x
 		double [] projectile_VY = new double[10];				// velocidades no eixo y
-
+ 
 		/* variáveis dos inimigos tipo 1 */
 		
 		ArrayList<InimigoUm> inimigos1 = new ArrayList<>();
@@ -502,40 +502,6 @@ public class Main {
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
 			player.movimenta(currentTime, delta);
-			if(player_state == Elemento.ACTIVE){
-				
-				if(GameLib.iskeyPressed(GameLib.KEY_UP)) player_Y -= delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_DOWN)) player_Y += delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_LEFT)) player_X -= delta * player_VX;
-				if(GameLib.iskeyPressed(GameLib.KEY_RIGHT)) player_X += delta * player_VY;
-				if(GameLib.iskeyPressed(GameLib.KEY_CONTROL)) {
-					
-					if(currentTime > player_nextShot){
-						
-						int free = findFreeIndex(projectile_states);
-												
-						if(free < projectile_states.length){
-							
-							projectile_X[free] = player_X;
-							projectile_Y[free] = player_Y - 2 * player_radius;
-							projectile_VX[free] = 0.0;
-							projectile_VY[free] = -1.0;
-							projectile_states[free] = 1;
-							player_nextShot = currentTime + 100;
-						}
-					}	
-				}
-			}
-			
-			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
-			
-			/* Verificando se coordenadas do player ainda estão dentro	*/
-			/* da tela de jogo após processar entrada do usuário.       */
-			
-			if(player_X < 0.0) player_X = 0.0;
-			if(player_X >= GameLib.WIDTH) player_X = GameLib.WIDTH - 1;
-			if(player_Y < 25.0) player_Y = 25.0;
-			if(player_Y >= GameLib.HEIGHT) player_Y = GameLib.HEIGHT - 1;
 
 			/*******************/
 			/* Desenho da cena */
@@ -553,24 +519,25 @@ public class Main {
 			player.desenha();
 
 			// if ( currentTime % 360 == 0 ) {
-			// 	player.localizacao();
-			// 	for (ProjetilPlayer pp : player.projeteis) pp.localizacao();
+				// for (ProjetilPlayer pp : player.projeteis) {
+				// 	if ( pp.localizacao() ) pp.localizacao();
+				// }
 			// }
 
 			/* deenhando projeteis (player) */
 			
 			for (ProjetilPlayer pp : player.projeteis) pp.desenha();
 
-			for(int i = 0; i < projectile_states.length; i++) {
+			// for(int i = 0; i < projectile_states.length; i++) {
 				
-				if(projectile_states[i] == Elemento.ACTIVE){
+			// 	if(projectile_states[i] == Elemento.ACTIVE){
 					
-					GameLib.setColor(Color.GREEN);
-					GameLib.drawLine(projectile_X[i], projectile_Y[i] - 5, projectile_X[i], projectile_Y[i] + 5);
-					GameLib.drawLine(projectile_X[i] - 1, projectile_Y[i] - 3, projectile_X[i] - 1, projectile_Y[i] + 3);
-					GameLib.drawLine(projectile_X[i] + 1, projectile_Y[i] - 3, projectile_X[i] + 1, projectile_Y[i] + 3);
-				}
-			}
+			// 		GameLib.setColor(Color.GREEN);
+			// 		GameLib.drawLine(projectile_X[i], projectile_Y[i] - 5, projectile_X[i], projectile_Y[i] + 5);
+			// 		GameLib.drawLine(projectile_X[i] - 1, projectile_Y[i] - 3, projectile_X[i] - 1, projectile_Y[i] + 3);
+			// 		GameLib.drawLine(projectile_X[i] + 1, projectile_Y[i] - 3, projectile_X[i] + 1, projectile_Y[i] + 3);
+			// 	}
+			// }
 			
 			/* desenhando projeteis (inimigos) */
 			
@@ -587,20 +554,20 @@ public class Main {
 			
 			for (InimigoUm i : inimigos1) i.desenha();
 
-			for(int i = 0; i < enemy1_states.length; i++){
+			// for(int i = 0; i < enemy1_states.length; i++){
 				
-				if(enemy1_states[i] == Elemento.EXPLODING){
+			// 	if(enemy1_states[i] == Elemento.EXPLODING){
 					
-					double alpha = (currentTime - enemy1_explosion_start[i]) / (enemy1_explosion_end[i] - enemy1_explosion_start[i]);
-					GameLib.drawExplosion(enemy1_X[i], enemy1_Y[i], alpha);
-				}
+			// 		double alpha = (currentTime - enemy1_explosion_start[i]) / (enemy1_explosion_end[i] - enemy1_explosion_start[i]);
+			// 		GameLib.drawExplosion(enemy1_X[i], enemy1_Y[i], alpha);
+			// 	}
 				
-				if(enemy1_states[i] == Elemento.ACTIVE){
+			// 	if(enemy1_states[i] == Elemento.ACTIVE){
 			
-					GameLib.setColor(Color.CYAN);
-					GameLib.drawCircle(enemy1_X[i], enemy1_Y[i], enemy1_radius);
-				}
-			}
+			// 		GameLib.setColor(Color.CYAN);
+			// 		GameLib.drawCircle(enemy1_X[i], enemy1_Y[i], enemy1_radius);
+			// 	}
+			// }
 			
 			/* desenhando inimigos (tipo 2) */
 			
