@@ -14,7 +14,7 @@ public class InimigoDois extends Inimigo {
 			projeteis.add( new ProjetilInimigo( Elemento.INACTIVE, coordenada_x, coordenada_y, Math.cos(angulo) * 0.45, Math.sin(angulo) * 0.45 * (-1.0), 2.0));
 	}
 
-	public void desenha() {
+	public void desenha( double currentTime ) {
 		if(estado == Elemento.EXPLODING){
 			double alpha = (Main.currentTime - explosion_start) / (explosion_end - explosion_start);
 			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);

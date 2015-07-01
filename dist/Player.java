@@ -56,9 +56,9 @@ public class Player extends Agente {
 
 	}
 	
-	public void desenha() {
+	public void desenha( double currentTime ) {
 		if(estado == EXPLODING){	
-			double alpha = (Main.currentTime - explosion_start) / (explosion_end - explosion_start);
+			double alpha = (currentTime - explosion_start) / (explosion_end - explosion_start);
 			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);
 		}
 		else {

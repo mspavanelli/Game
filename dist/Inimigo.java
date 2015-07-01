@@ -12,5 +12,4 @@ public abstract class Inimigo extends Agente {
 		this.velocidade_rotacao = velocidade_rotacao;
 		this.next_enemy = next_enemy;
 	}
-
 }

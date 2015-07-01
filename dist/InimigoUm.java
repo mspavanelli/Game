@@ -16,9 +16,9 @@ public class InimigoUm extends Inimigo {
 
 
 // ProjetilInimigo(int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y, double raio) 
-	public void desenha() {
+	public void desenha( double currentTime ) {
 		if(estado == Elemento.EXPLODING){
-			double alpha = (Main.currentTime - explosion_start) / (explosion_end - explosion_start);
+			double alpha = (currentTime - explosion_start) / (explosion_end - explosion_start);
 			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);
 		}
 		if(estado == Elemento.ACTIVE){

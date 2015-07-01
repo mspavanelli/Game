@@ -1,4 +1,4 @@
 public interface Drawable {
 	
-	void desenha();
+	void desenha( double currentTime );
 }

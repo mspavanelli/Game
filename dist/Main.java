@@ -516,7 +516,7 @@ public class Main {
 			for (PrimeiroPlano p : primeiroPlano) p.desenha();
 			
 			/* desenhando player */
-			player.desenha();
+			player.desenha( currentTime );
 
 			// if ( currentTime % 360 == 0 ) {
 				// for (ProjetilPlayer pp : player.projeteis) {
@@ -552,7 +552,7 @@ public class Main {
 			
 			/* desenhando inimigos (tipo 1) */
 			
-			for (InimigoUm i : inimigos1) i.desenha();
+			for (InimigoUm i : inimigos1) i.desenha(currentTime);
 
 			// for(int i = 0; i < enemy1_states.length; i++){
 				
@@ -571,8 +571,8 @@ public class Main {
 			
 			/* desenhando inimigos (tipo 2) */
 			
-			for ( InimigoDois d : inimigos2 ) d.desenha();
-
+			for ( InimigoDois d : inimigos2 ) d.desenha( currentTime );
+/*
 			for(int i = 0; i < enemy2_states.length; i++){
 				
 				if(enemy2_states[i] == Elemento.EXPLODING){
@@ -587,7 +587,7 @@ public class Main {
 					GameLib.drawDiamond(enemy2_X[i], enemy2_Y[i], enemy2_radius);
 				}
 			}
-			
+*/			
 			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 			
 			GameLib.display();
