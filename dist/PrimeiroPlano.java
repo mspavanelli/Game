@@ -11,9 +11,9 @@ public class PrimeiroPlano extends Fundo {
 		this.speed = speed;
 	}
 
-	public void desenha() {
+	public void desenha( long currentTime ) {
 		GameLib.setColor(Color.GRAY);
-		long delta = System.currentTimeMillis() - Main.currentTime;
+		long delta = System.currentTimeMillis() - currentTime;
 		count += speed * delta;
 		GameLib.fillRect(coordenada_x, (coordenada_y + count) % GameLib.HEIGHT, 3, 3);
 	}
