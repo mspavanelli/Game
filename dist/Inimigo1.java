@@ -20,7 +20,7 @@ public class Inimigo1{
 	public double raio;
 	public long nextEnemy1;
 
-	public InimigoUm(  int [] estados,double [] coordenada_x,double [] coordenada_y,
+	public Inimigo1(  int [] estados,double [] coordenada_x,double [] coordenada_y,
 		double [] velocidade, double [] angulo, double [] velocidadeRotacao, double [] explosion_start,
 		double [] explosion_end, long [] nextShoot, double raio, long nextEnemy1){
 		this.estados=estados;

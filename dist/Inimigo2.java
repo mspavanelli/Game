@@ -1,5 +1,5 @@
 import java.awt.Color;
-public class Inimigo1{
+public class Inimigo2{
 
 	//InimigoState inactiveState;
 	//InimigoState activeState;
@@ -18,7 +18,7 @@ public class Inimigo1{
 	public double raio;
 	public long nextEnemy2;
 
-	public InimigoDois(int [] estados,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
+	public Inimigo2(int [] estados,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
 		double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
 		double spawnX,int count,double raio,long nextEnemy2){
 		this.estados=estados;
