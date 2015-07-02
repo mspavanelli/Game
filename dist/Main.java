@@ -457,7 +457,7 @@ public class Main {
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
 
-		running = player.controleMovimetoPlayer(currentTime, delta, running);
+			running = player.controleMovimetoPlayer(currentTime, delta, running);
 
 			/* Verificando se coordenadas do player ainda estão dentro	*/
 			/* da tela de jogo após processar entrada do usuário.       */

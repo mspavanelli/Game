@@ -9,6 +9,13 @@ Mais informações no DOC
 
 ## Etapas
 
+### Atividade Atual
+
+- [ ] Aplicar Padrão Mediator juntamente ao State (estados e conflitos entre Agentes e Projeteis)
+- [ ] Criar PowerUps (desenho e comportamentos)
+- [ ] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
+
+
 ### Código
 
 - [x] Análise
@@ -16,8 +23,7 @@ Mais informações no DOC
 - [ ] Aplicar Padrões
 	- [ ] Singleton
 	- [ ] State
-	- [ ] Strategy
-	- [ ] Observer
+	- [ ] Mediator
 - [ ] Criar novo inimigo
 - [ ] Power-ups
 

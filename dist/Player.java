@@ -1,10 +1,8 @@
 import java.awt.Color;
 
 public class Player{
-	//PlayerState activeState;
-	//PlayerState explodingState;
-	//PlayerState state;
 
+	PlayerState state;
 	PlayerProjectile projectile;
 
 	public int estado;
@@ -17,10 +15,9 @@ public class Player{
 	public double explosion_end;
 	public long nextShot;
 
-	public Player(PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot){
+	public Player(PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y,
+					 double raio, double explosion_start, double explosion_end, long nextShot){
 
-		//activeState = new PlayerActiveState(this);
-		//explodingState = new PlayerExplodingState(this);
 		this.projectile=projectile;
 		this.estado=estado;
 		this.coordenada_x=coordenada_x;
@@ -31,6 +28,7 @@ public class Player{
 		this.explosion_start=explosion_start;
 		this.explosion_end=explosion_end;
 		this.nextShot=nextShot;
+		state = new PlayerActiveState( this );
 	}
 /*
 	void setState(PlayerState state){
