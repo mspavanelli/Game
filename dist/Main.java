@@ -81,7 +81,10 @@ public class Main {
 		Inimigo2 inimigo2 = new Inimigo2(new int[10], new double[10],  new double[10], new double[10], new double[10],
 		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,12.0,currentTime + 7000);
 
-		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2) */
+		Inimigo3 inimigo3 = new Inimigo3(new int[10], new double[10],  new double[10], new double[10], new double[10],
+		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,20.0,currentTime + 10000);
+
+		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2, quanto tipo 3) */
 		InimigoProjectile inimigoProjectile = new InimigoProjectile(new int[200],new double[200],new double[200],new double[200],new double[200],2.0);
 		
 		/* estrelas que formam o fundo de primeiro plano */
@@ -103,6 +106,7 @@ public class Main {
 		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
 		for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
 		for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
+		for(int i = 0; i < inimigo3.estados.length; i++) inimigo2.estados[i] = INACTIVE;
 
 		/* iniciado interface gráfica */
 
@@ -190,7 +194,21 @@ public class Main {
 						player.explosion_end = currentTime + 2000;
 					}
 				}
+
+				for(int i = 0; i < inimigo3.estados.length; i++){
+
+				double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
+				double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
+				double dist = Math.sqrt(dx * dx + dy * dy);
+
+				if(dist < (player.raio + inimigo3.raio) * 0.8){
+
+					player.estado = EXPLODING;
+					player.explosion_start = currentTime;
+					player.explosion_end = currentTime + 2000;
+				}
 			}
+		}
 
 			/* colisões projeteis (player) - inimigos */
 
@@ -226,6 +244,23 @@ public class Main {
 							inimigo2.estados[i] = EXPLODING;
 							inimigo2.explosion_start[i] = currentTime;
 							inimigo2.explosion_end[i] = currentTime + 500;
+						}
+					}
+				}
+			
+				for(int i = 0; i < inimigo3.estados.length; i++){
+
+					if(inimigo3.estados[i] == ACTIVE){
+
+						double dx = inimigo3.coordenada_x[i] - player.projectile.coordenada_x[k];
+						double dy = inimigo3.coordenada_y[i] - player.projectile.coordenada_y[k];
+						double dist = Math.sqrt(dx * dx + dy * dy);
+
+						if(dist < inimigo3.raio){
+
+							inimigo3.estados[i] = EXPLODING;
+							inimigo3.explosion_start[i] = currentTime;
+							inimigo3.explosion_end[i] = currentTime + 500;
 						}
 					}
 				}
@@ -394,6 +429,82 @@ public class Main {
 				}
 			}
 
+			/* inimigos tipo 3*/
+			for(int i = 0; i < inimigo3.estados.length; i++){
+
+				if(inimigo3.estados[i] == EXPLODING){
+
+					if(currentTime > inimigo3.explosion_end[i]){
+
+						inimigo3.estados[i] = INACTIVE;
+					}
+				}
+
+				if(inimigo3.estados[i] == ACTIVE){
+
+					/* verificando se inimigo saiu da tela */
+					if(	inimigo3.coordenada_x[i] < -10 || inimigo3.coordenada_x[i] > GameLib.WIDTH + 10 ) {
+
+						inimigo3.estados[i] = INACTIVE;
+					}
+					else {
+
+						boolean shootNow = false;
+						double previousY = inimigo3.coordenada_y[i];
+
+						inimigo3.coordenada_x[i] += inimigo3.velocidade[i] * Math.cos(inimigo3.angulo[i]) * delta;
+						inimigo3.coordenada_y[i] += inimigo3.velocidade[i] * Math.sin(inimigo3.angulo[i]) * delta * (-1.0);
+						inimigo3.angulo[i] += inimigo3.velocidadeRotacao[i] * delta;
+
+						double threshold = GameLib.HEIGHT * 0.30;
+
+						if(previousY < threshold && inimigo3.coordenada_y[i] >= threshold) {
+
+							if(inimigo3.coordenada_x[i] < GameLib.WIDTH / 2) inimigo3.velocidadeRotacao[i] = 0.01;
+							else inimigo3.velocidadeRotacao[i] = -0.01;
+						}
+
+						if(inimigo3.velocidadeRotacao[i] > 0 && Math.abs(inimigo3.angulo[i] - 3 * Math.PI) < 0.05){
+
+							inimigo3.velocidadeRotacao[i] = 0.0;
+							inimigo3.angulo[i] = 3 * Math.PI;
+							shootNow = true;
+						}
+
+						if(inimigo3.velocidadeRotacao[i] < 0 && Math.abs(inimigo3.angulo[i]) < 0.05){
+
+							inimigo3.velocidadeRotacao[i] = 0.0;
+							inimigo3.angulo[i] = 0.0;
+							shootNow = true;
+						}
+
+						if(shootNow){
+
+							double [] angles = { Math.PI/2, Math.PI/2, Math.PI/2 };
+							int [] freeArray = findFreeIndex(inimigoProjectile.estados, angles.length);
+
+							for(int k = 0; k < freeArray.length; k++){
+
+								int free = freeArray[k];
+
+								if(free < inimigoProjectile.estados.length){
+
+									double a = angles[k] + Math.random() * Math.PI/4 - Math.PI/8;
+									double vx = Math.cos(a);
+									double vy = Math.sin(a);
+
+									inimigoProjectile.coordenada_x[free] = inimigo3.coordenada_x[i];
+									inimigoProjectile.coordenada_y[free] = inimigo3.coordenada_y[i];
+									inimigoProjectile.velocidade_x[free] = vx * 0.05;
+									inimigoProjectile.velocidade_y[free] = vy * 0.05;
+									inimigoProjectile.estados[free] = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+
 			/* verificando se novos inimigos (tipo 1) devem ser "lançados" */
 
 			if(currentTime > inimigo1.nextEnemy1){
@@ -439,6 +550,36 @@ public class Main {
 						inimigo2.count = 0;
 						inimigo2.spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.2 : GameLib.WIDTH * 0.8;
 						inimigo2.nextEnemy2 = (long) (currentTime + 3000 + Math.random() * 3000);
+					}
+				}
+			}
+
+			/* verificando se novos inimigos (tipo 3) devem ser "lançados" */
+
+			if(currentTime > inimigo3.nextEnemy3){
+
+				int free = findFreeIndex(inimigo3.estados);
+
+				if(free < inimigo3.estados.length){
+
+					inimigo3.coordenada_x[free] = inimigo3.spawnX;
+					inimigo3.coordenada_y[free] = -10.0;
+					inimigo3.velocidade[free] = 0.42;
+					inimigo3.angulo[free] = (3 * Math.PI) / 2;
+					inimigo3.velocidadeRotacao[free] = 0.0;
+					inimigo3.estados[free] = ACTIVE;
+
+					inimigo3.count++;
+
+					if(inimigo3.count < 10){
+
+						inimigo3.nextEnemy3 = currentTime + 120;
+					}
+					else {
+
+						inimigo3.count = 0;
+						inimigo3.spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
+						inimigo3.nextEnemy3 = (long) (currentTime + 3000 + Math.random() * 3000);
 					}
 				}
 			}
@@ -498,6 +639,9 @@ public class Main {
 
 			inimigo2.desenhaInimigo2(currentTime);
 
+			/* desenhando inimigos (tipo 3) */
+
+			inimigo3.desenhaInimigo3(currentTime);
 
 			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 

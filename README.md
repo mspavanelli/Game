@@ -11,8 +11,9 @@ Mais informações no DOC
 
 ### Atividade Atual
 
-- [ ] Aplicar Padrão Mediator juntamente ao State (estados e conflitos entre Agentes e Projeteis)
+- [x] Criar novo inimigo
 - [ ] Criar PowerUps (desenho e comportamentos)
+- [ ] Aplicar Padrão Mediator juntamente ao State (estados e conflitos entre Agentes e Projeteis)
 - [ ] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
 
 

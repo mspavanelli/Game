@@ -13,7 +13,7 @@ public class Mediadora {
 	}
 
 	public boolean playerComProjetil() {
-		
+
 	}
 	
 	public boolean playerComInimigo() {}
