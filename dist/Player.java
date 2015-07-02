@@ -5,7 +5,7 @@ public class Player{
 	//PlayerState explodingState;
 	//PlayerState state;
 
-	ProjetilPlayer projectile;
+	PlayerProjectile projectile;
 
 	public int estado;
 	public double coordenada_x;
@@ -17,7 +17,7 @@ public class Player{
 	public double explosion_end;
 	public long nextShot;
 
-	public Player(ProjetilPlayer projectile, int estado, double coordenada_x, double coordenada_y,
+	public Player(PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y,
 									double velocidade_x, double velocidade_y,
 								 double raio, double explosion_start,
 								 double explosion_end, long nextShot){
