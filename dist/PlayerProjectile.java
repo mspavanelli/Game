@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class ProjetilPlayer{
+public class PlayerProjectile{
 
   //ProjectileState activeState;
   //ProjectileState inactiveState;
@@ -13,7 +13,7 @@ public class ProjetilPlayer{
   public double [] velocidade_x;
   public double [] velocidade_y;
 
-  public ProjetilPlayer(int [] estadosProjetil, double [] coordenada_x,
+  public PlayerProjectile(int [] estadosProjetil, double [] coordenada_x,
                           double [] coordenada_y, double [] velocidade_x,
                           double [] velocidade_y){
     this.estadosProjetil=estadosProjetil;
