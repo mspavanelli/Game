@@ -6,5 +6,5 @@ public class ProjetilPlayerInactive extends ProjetilPlayerState{
 		this.ppi=ppi;
 	}
 
-	public void desenha();
+	public void desenha() {}
 }
