@@ -69,7 +69,7 @@ public class Main {
 
 		/* variáveis dos projéteis disparados pelo player */
 		/* variáveis do player */
-		PlayerT player = new PlayerT(new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10]),
+		Player player = new Player(new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10]),
 		ACTIVE,  GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0 , 0, 0, currentTime);
 
 		/* variáveis dos inimigos tipo 1 */
