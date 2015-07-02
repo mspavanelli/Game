@@ -16,7 +16,7 @@ public class PlayerExplodingState extends PlayerState{
 		System.out.println( "voltando ao estado ativo" );
 		new PlayerActiveState( player );
 	}
-	public void desenhaPlayer( long currentTime ){
+	public void desenha( long currentTime ){
 			double alpha = (currentTime - player.explosion_start) / (player.explosion_end - player.explosion_start);
 			GameLib.drawExplosion(player.coordenada_x, player.coordenada_y, alpha);
 	}

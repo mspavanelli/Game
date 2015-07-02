@@ -197,18 +197,18 @@ public class Main {
 
 				for(int i = 0; i < inimigo3.estados.length; i++){
 
-				double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
-				double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
-				double dist = Math.sqrt(dx * dx + dy * dy);
+					double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
+					double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
+					double dist = Math.sqrt(dx * dx + dy * dy);
 
-				if(dist < (player.raio + inimigo3.raio) * 0.8){
+					if(dist < (player.raio + inimigo3.raio) * 0.8){
 
-					player.estado = EXPLODING;
-					player.explosion_start = currentTime;
-					player.explosion_end = currentTime + 2000;
+						player.estado = EXPLODING;
+						player.explosion_start = currentTime;
+						player.explosion_end = currentTime + 2000;
+					}
 				}
 			}
-		}
 
 			/* colisões projeteis (player) - inimigos */
 
@@ -609,46 +609,34 @@ public class Main {
 			/*******************/
 
 			/* desenhando plano fundo distante */
+			/* desenhando plano de fundo próximo */
+			/* desenhando player */
+			/* deenhando projeteis (player) */
+			/* desenhando projeteis (inimigos) */
+			/* desenhando inimigos (tipo 1) */
+			/* desenhando inimigos (tipo 2) */
+			/* desenhando inimigos (tipo 3) */
+			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 
 			SegundoPlano.count += SegundoPlano.speed * delta;
 			for ( int i = 0; i < 50; i++ )
 				segundoPlano.get(i).desenha( currentTime );
 
-			/* desenhando plano de fundo próximo */
-
 			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
 			for ( int i = 0; i < 20; i++ )
 				primeiroPlano.get(i).desenha( currentTime );
 
-			/* desenhando player */
+			player.desenha(currentTime);
+			player.projectile.desenha();
 
-			player.desenhaPlayer(currentTime);
-
-			/* deenhando projeteis (player) */
-
-			player.projectile.desenhaProjetil();
-
-			/* desenhando projeteis (inimigos) */
 			inimigoProjectile.desenha();
-
-			/* desenhando inimigos (tipo 1) */
-
-			inimigo1.desenhaInimigo1(currentTime);
-
-			/* desenhando inimigos (tipo 2) */
-
-			inimigo2.desenhaInimigo2(currentTime);
-
-			/* desenhando inimigos (tipo 3) */
-
-			inimigo3.desenhaInimigo3(currentTime);
-
-			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
+			inimigo1.desenha(currentTime);
+			inimigo2.desenha(currentTime);
+			inimigo3.desenha(currentTime);
 
 			GameLib.display();
 
 			/* faz uma pausa de modo que cada execução do laço do main loop demore aproximadamente 5 ms. */
-
 			busyWait(currentTime + 5);
 		}
 

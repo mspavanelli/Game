@@ -36,7 +36,7 @@ public class PlayerProjectile{
     return this.activeState;
   }
   */
-  public void desenhaProjetil(){
+  public void desenha(){
     for(int i = 0; i < estadosProjetil.length; i++){
 
       if(estadosProjetil[i] == 1){

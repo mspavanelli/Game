@@ -74,7 +74,7 @@ public class Player{
 		return true;
 	}
 	//desenha o player
-	public void desenhaPlayer(long currentTime){
+	public void desenha(long currentTime){
 		if(estado == 2){
 
 			double alpha = (currentTime - explosion_start) / (explosion_end - explosion_start);

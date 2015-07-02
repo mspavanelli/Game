@@ -55,7 +55,7 @@ public class Inimigo1{
 		return this.explodingState;
 	}
 */
-	public void desenhaInimigo1(long currentTime){
+	public void desenha(long currentTime){
 		for(int i = 0; i < estados.length; i++){
 
 			if(estados[i] == 2){

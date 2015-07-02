@@ -18,7 +18,7 @@ public class PlayerActiveState extends PlayerState{
 		new PlayerExplodingState( player );
 	}
 
-	public void desenhaPlayer( long currentTime ){
+	public void desenha( long currentTime ){
 			GameLib.setColor(Color.BLUE);
 			GameLib.drawPlayer(player.coordenada_x, player.coordenada_y, player.raio);
 	}
