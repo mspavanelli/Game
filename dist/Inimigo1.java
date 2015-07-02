@@ -1,9 +1,12 @@
 import java.awt.Color;
-public class InimigoDois{
+
+public class Inimigo1{
 
 	//InimigoState inactiveState;
 	//InimigoState activeState;
 	//inimigoState explodingState;
+
+	//InimigoState state;
 
 	public int [] estados;
 	public double [] coordenada_x;
@@ -12,15 +15,14 @@ public class InimigoDois{
 	public double [] angulo;
 	public double [] velocidadeRotacao;
 	public double [] explosion_start;
-	public double [] explosion_end;
-	public double spawnX;
-	public int count;
+	public double [] explosion_end;;
+	public long [] nextShoot;
 	public double raio;
-	public long nextEnemy2;
+	public long nextEnemy1;
 
-	public InimigoDois(int [] estados,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
-		double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
-		double spawnX,int count,double raio,long nextEnemy2){
+	public InimigoUm(  int [] estados,double [] coordenada_x,double [] coordenada_y,
+		double [] velocidade, double [] angulo, double [] velocidadeRotacao, double [] explosion_start,
+		double [] explosion_end, long [] nextShoot, double raio, long nextEnemy1){
 		this.estados=estados;
 		this.coordenada_x=coordenada_x;
 		this.coordenada_y=coordenada_y;
@@ -29,18 +31,14 @@ public class InimigoDois{
 		this.velocidadeRotacao=velocidadeRotacao;
 		this.explosion_start=explosion_start;
 		this.explosion_end=explosion_end;
-		this.spawnX=spawnX;
-		this.count=count;
+		this.nextShoot=nextShoot;
 		this.raio=raio;
-		this.nextEnemy2=nextEnemy2;
-
+		this.nextEnemy1=nextEnemy1;
 		//inactiveState = new InimigoInactiveState(this);
 		//activeState = new InimigoActiveState(this);
 		//explodingState = new InimigoExplodingState(this);
+
 	}
-
-
-	//InimigoState state;
 	/*
 	void setState(InimigoState state){
 		this.state=state;
@@ -56,8 +54,8 @@ public class InimigoDois{
 	public InimigoState getExplodingState(){
 		return this.explodingState;
 	}
-	*/
-	public void desenhaInimigo2(long currentTime){
+*/
+	public void desenhaInimigo1(long currentTime){
 		for(int i = 0; i < estados.length; i++){
 
 			if(estados[i] == 2){
@@ -68,8 +66,8 @@ public class InimigoDois{
 
 			if(estados[i] == 1){
 
-				GameLib.setColor(Color.MAGENTA);
-				GameLib.drawDiamond(coordenada_x[i], coordenada_y[i],raio);
+				GameLib.setColor(Color.CYAN);
+				GameLib.drawCircle(coordenada_x[i], coordenada_y[i], raio);
 			}
 		}
 	}
