@@ -3,6 +3,8 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import javax.swing.JFrame;
 
@@ -98,11 +100,14 @@ public class GameLib {
 	}
 	
 	public static void drawPlayer(double player_X, double player_Y, double player_size){
-		
 		GameLib.drawLine(player_X - player_size, player_Y + player_size, player_X, player_Y - player_size);
 		GameLib.drawLine(player_X + player_size, player_Y + player_size, player_X, player_Y - player_size);
 		GameLib.drawLine(player_X - player_size, player_Y + player_size, player_X, player_Y + player_size * 0.5);
 		GameLib.drawLine(player_X + player_size, player_Y + player_size, player_X, player_Y + player_size * 0.5);
+	}
+
+	public static void drawPlayer(double player_X, double player_Y, Icon image ) {
+		g.
 	}
 	
 	public static void drawExplosion(double x, double y, double alpha){

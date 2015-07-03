@@ -1,4 +1,6 @@
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Player{
 
@@ -80,9 +82,10 @@ public class Player{
 			GameLib.drawExplosion(coordenada_x, coordenada_y, alpha);
 		}
 		else{
-
-			GameLib.setColor(Color.BLUE);
-			GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
+			Icon ship = new ImageIcon( getClass().getResource( "nave.png") );
+			// GameLib.setColor(Color.BLUE);
+			// GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
+			GameLib.drawPlayer( coordenada_x, coordenada_y, ship );
 		}
 	}
 }
