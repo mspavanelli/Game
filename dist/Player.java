@@ -71,6 +71,12 @@ public class Player{
 			}
 		}
 		if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) return false;
+		
+		if(coordenada_x < 0.0) coordenada_x = 0.0;
+		if(coordenada_x >= GameLib.WIDTH) coordenada_x = GameLib.WIDTH - 1;
+		if(coordenada_y< 25.0) coordenada_y = 25.0;
+		if(coordenada_y >= GameLib.HEIGHT) coordenada_y = GameLib.HEIGHT - 
+		
 		return true;
 	}
 	//desenha o player
