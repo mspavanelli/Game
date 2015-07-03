@@ -9,8 +9,6 @@ public class Main {
 	public static final int INACTIVE = 0;
 	public static final int ACTIVE = 1;
 	public static final int EXPLODING = 2;
-	public static boolean running;
-
 
 	/* Espera, sem fazer nada, até que o instante de tempo atual seja */
 	/* maior ou igual ao instante especificado no parâmetro "time.    */
@@ -61,7 +59,7 @@ public class Main {
 	public static void main(String [] args){
 
 		/* Indica que o jogo está em execução */
-		running = true;
+		boolean running = true;
 
 		/* variáveis usadas no controle de tempo efetuado no main loop */
 
@@ -598,7 +596,8 @@ public class Main {
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
 
-			running = player.controleMovimetoPlayer(currentTime, delta, running);
+			player.controleMovimetoPlayer( currentTime, delta );
+			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
 
 			/* Verificando se coordenadas do player ainda estão dentro	*/
 			/* da tela de jogo após processar entrada do usuário.       */

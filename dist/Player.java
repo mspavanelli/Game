@@ -7,12 +7,7 @@ public class Player{
 
 	public int estado;
 	public double coordenada_x;
-	public double coordenada_y;
-	public double velocidade_x;
-	public double velocidade_y;
-	public double raio;
-	public double explosion_start;
-	public double explosion_end;
+	public double coordenada_y, velocidade_x, velocidade_y, raio, explosion_start, explosion_end;
 	public long nextShot;
 
 	public Player(PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y,
@@ -44,7 +39,7 @@ public class Player{
 	}
 */
 	//controle de movimento do player
-	public boolean controleMovimetoPlayer(long currentTime, long delta , boolean running){
+	public void controleMovimetoPlayer(long currentTime, long delta){
 		if(estado == 1){
 
 			if(GameLib.iskeyPressed(GameLib.KEY_UP)) coordenada_y -= delta * velocidade_y;
@@ -70,14 +65,12 @@ public class Player{
 				}
 			}
 		}
-		if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) return false;
 		
 		if(coordenada_x < 0.0) coordenada_x = 0.0;
 		if(coordenada_x >= GameLib.WIDTH) coordenada_x = GameLib.WIDTH - 1;
 		if(coordenada_y< 25.0) coordenada_y = 25.0;
 		if(coordenada_y >= GameLib.HEIGHT) coordenada_y = GameLib.HEIGHT -1;
 		
-		return true;
 	}
 	//desenha o player
 	public void desenha(long currentTime){
