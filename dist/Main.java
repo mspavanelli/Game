@@ -72,6 +72,22 @@ public class Main {
 		}
 	}
 
+	public static void colisaoPlayerComInimigos( Player player, Inimigo inimigoX, long currentTime ) {
+		for(int i = 0; i < inimigoX.estados.length; i++){
+
+			double dx = inimigoX.coordenada_x[i] - player.coordenada_x;
+			double dy = inimigoX.coordenada_y[i] - player.coordenada_y;
+			double dist = Math.sqrt(dx * dx + dy * dy);
+
+			if(dist < (player.raio + inimigoX.raio) * 0.8){
+
+				player.estado = EXPLODING;
+				player.explosion_start = currentTime;
+				player.explosion_end = currentTime + 2000;
+			}
+		}
+	}
+
 	/* Método principal */
 
 	public static void main(String [] args){
@@ -104,7 +120,7 @@ public class Main {
 
 		for(int i = 0; i < player.projectile.estadosProjetil.length; i++) player.projectile.estadosProjetil[i] = INACTIVE;
 		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
-			
+
 		// for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
 		// for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
 		for(int i = 0; i < inimigo3.estados.length; i++) inimigo2.estados[i] = INACTIVE;
@@ -168,6 +184,10 @@ public class Main {
 
 				/* colisões player - inimigos */
 
+				colisaoPlayerComInimigos( player, inimigo1, currentTime );
+				colisaoPlayerComInimigos( player, inimigo2, currentTime );
+				colisaoPlayerComInimigos( player, inimigo3, currentTime );
+/*
 				for(int i = 0; i < inimigo1.estados.length; i++){
 
 					double dx = inimigo1.coordenada_x[i] - player.coordenada_x;
@@ -209,68 +229,15 @@ public class Main {
 						player.explosion_end = currentTime + 2000;
 					}
 				}
+				*/
 			}
 
 			/* colisões projeteis (player) - inimigos */
 
 			for(int k = 0; k < player.projectile.estadosProjetil.length; k++) {
-
 				colisaoProjetilPlayerComInimigos( player, inimigo1, currentTime, k );
 				colisaoProjetilPlayerComInimigos( player, inimigo2, currentTime, k );
 				colisaoProjetilPlayerComInimigos( player, inimigo3, currentTime, k );
-
-/*
-				for(int i = 0; i < inimigo1.estados.length; i++){
-
-					if(inimigo1.estados[i] == ACTIVE){
-
-						double dx = inimigo1.coordenada_x[i] - player.projectile.coordenada_x[k];
-						double dy = inimigo1.coordenada_y[i] - player.projectile.coordenada_y[k];
-						double dist = Math.sqrt(dx * dx + dy * dy);
-
-						if(dist < inimigo1.raio){
-
-							inimigo1.estados[i] = EXPLODING;
-							inimigo1.explosion_start[i] = currentTime;
-							inimigo1.explosion_end[i] = currentTime + 500;
-						}
-					}
-				}
-
-				for(int i = 0; i < inimigo2.estados.length; i++){
-
-					if(inimigo2.estados[i] == ACTIVE){
-
-						double dx = inimigo2.coordenada_x[i] - player.projectile.coordenada_x[k];
-						double dy = inimigo2.coordenada_y[i] - player.projectile.coordenada_y[k];
-						double dist = Math.sqrt(dx * dx + dy * dy);
-
-						if(dist < inimigo2.raio){
-
-							inimigo2.estados[i] = EXPLODING;
-							inimigo2.explosion_start[i] = currentTime;
-							inimigo2.explosion_end[i] = currentTime + 500;
-						}
-					}
-				}
-			
-				for(int i = 0; i < inimigo3.estados.length; i++){
-
-					if(inimigo3.estados[i] == ACTIVE){
-
-						double dx = inimigo3.coordenada_x[i] - player.projectile.coordenada_x[k];
-						double dy = inimigo3.coordenada_y[i] - player.projectile.coordenada_y[k];
-						double dist = Math.sqrt(dx * dx + dy * dy);
-
-						if(dist < inimigo3.raio){
-
-							inimigo3.estados[i] = EXPLODING;
-							inimigo3.explosion_start[i] = currentTime;
-							inimigo3.explosion_end[i] = currentTime + 500;
-						}
-					}
-				}
-*/
 			}
 
 			/***************************/
