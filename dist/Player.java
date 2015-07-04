@@ -83,9 +83,9 @@ public class Player{
 		}
 		else{
 			Icon ship = new ImageIcon( getClass().getResource( "nave.png") );
-			// GameLib.setColor(Color.BLUE);
-			// GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
-			GameLib.drawPlayer( coordenada_x, coordenada_y, ship );
+			GameLib.setColor(Color.BLUE);
+			GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
+			// GameLib.drawPlayer( coordenada_x, coordenada_y, ship );
 		}
 	}
 }

@@ -6,7 +6,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /***********************************************************************/
 /*                                                                     */
@@ -107,7 +108,7 @@ public class GameLib {
 	}
 
 	public static void drawPlayer(double player_X, double player_Y, Icon image ) {
-		g.
+		// g.add( new Label() );
 	}
 	
 	public static void drawExplosion(double x, double y, double alpha){
