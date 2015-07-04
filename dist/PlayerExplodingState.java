@@ -20,4 +20,8 @@ public class PlayerExplodingState extends PlayerState{
 			double alpha = (currentTime - player.explosion_start) / (player.explosion_end - player.explosion_start);
 			GameLib.drawExplosion(player.coordenada_x, player.coordenada_y, alpha);
 	}
+
+	public void controleMovimetoPlayer(long currentTime, long delta){
+		
+	}
 }
