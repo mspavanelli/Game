@@ -15,14 +15,3 @@ public abstract class Inimigo {
 		this.estados = estados;
 	}
 }
-
-
-	// public double spawnX;
-/*
-	public long [] nextShoot;
-	public long nextEnemy1;
-
-	public double spawnX;
-	public int count;
-	public long nextEnemy3;
-*/

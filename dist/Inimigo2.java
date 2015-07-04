@@ -20,30 +20,8 @@ public class Inimigo2 extends Inimigo {
 		this.count=count;
 		this.raio=raio;
 		this.nextEnemy2=nextEnemy2;
-
-		//inactiveState = new InimigoInactiveState(this);
-		//activeState = new InimigoActiveState(this);
-		//explodingState = new InimigoExplodingState(this);
 	}
 
-
-	//InimigoState state;
-	/*
-	void setState(InimigoState state){
-		this.state=state;
-	}
-	public InimigoState getInactiveState(){
-		return this.inactiveState;
-	}
-
-	public InimigoState getActiveState(){
-		return this.activeState;
-	}
-
-	public InimigoState getExplodingState(){
-		return this.explodingState;
-	}
-	*/
 	public void desenha(long currentTime){
 		for(int i = 0; i < estados.length; i++){
 
