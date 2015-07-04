@@ -12,8 +12,8 @@ Mais informações no DOC
 ### Atividade Atual
 
 - [x] Criar novo inimigo
-- [ ] Criar PowerUps (desenho e comportamentos)
-- [ ] Aplicar Padrão Mediator juntamente ao State (estados e conflitos entre Agentes e Projeteis)
+- [x] Criar PowerUps (desenho e comportamentos)
+- [ ] Simplificação dos laços (Strategy)
 - [ ] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
 
 
@@ -24,9 +24,9 @@ Mais informações no DOC
 - [ ] Aplicar Padrões
 	- [ ] Singleton
 	- [ ] State
-	- [ ] Mediator
-- [ ] Criar novo inimigo
-- [ ] Power-ups
+	- [ ] Strategy
+- [x] Criar novo inimigo
+- [x] Power-ups
 
 ### Relatório
 
@@ -37,8 +37,3 @@ Mais informações no DOC
 
 ___
 Mais informações no PDF
-
-KAIO TESTE!!!
-KAIÃO ->Viadão!
-
-

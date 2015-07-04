@@ -106,10 +106,6 @@ public class GameLib {
 		GameLib.drawLine(player_X - player_size, player_Y + player_size, player_X, player_Y + player_size * 0.5);
 		GameLib.drawLine(player_X + player_size, player_Y + player_size, player_X, player_Y + player_size * 0.5);
 	}
-
-	public static void drawPlayer(double player_X, double player_Y, Icon image ) {
-		// g.add( new Label() );
-	}
 	
 	public static void drawExplosion(double x, double y, double alpha){
 
