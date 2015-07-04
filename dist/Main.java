@@ -116,16 +116,6 @@ public class Main {
 		for ( int i = 0; i < 50; i++ )
 			segundoPlano.add( new SegundoPlano(0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.045, 0.0));
 
-
-		/* inicializações */
-
-		for(int i = 0; i < player.projectile.estadosProjetil.length; i++) player.projectile.estadosProjetil[i] = INACTIVE;
-		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
-
-		// for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
-		// for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
-		for(int i = 0; i < inimigo3.estados.length; i++) inimigo2.estados[i] = INACTIVE;
-
 		/* iniciado interface gráfica */
 
 		GameLib.initGraphics();
@@ -151,14 +141,7 @@ public class Main {
 
 		while(running){
 
-			/* Usada para atualizar o estado dos elementos do jogo    */
-			/* (player, projéteis e inimigos) "delta" indica quantos  */
-			/* ms se passaram desde a última atualização.             */
-
 			delta = System.currentTimeMillis() - currentTime;
-
-			/* Já a variável "currentTime" nos dá o timestamp atual.  */
-
 			currentTime = System.currentTimeMillis();
 
 			/***************************/
@@ -188,38 +171,7 @@ public class Main {
 				colisaoPlayerComInimigos( player, inimigo1, currentTime );
 				colisaoPlayerComInimigos( player, inimigo2, currentTime );
 				colisaoPlayerComInimigos( player, inimigo3, currentTime );
-/*
-				for(int i = 0; i < inimigo1.estados.length; i++){
-					double dx = inimigo1.coordenada_x[i] - player.coordenada_x;
-					double dy = inimigo1.coordenada_y[i] - player.coordenada_y;
-					double dist = Math.sqrt(dx * dx + dy * dy);
-					if(dist < (player.raio + inimigo1.raio) * 0.8){
-						player.estado = EXPLODING;
-						player.explosion_start = currentTime;
-						player.explosion_end = currentTime + 2000;
-					}
-				}
-				for(int i = 0; i < inimigo2.estados.length; i++){
-					double dx = inimigo2.coordenada_x[i] - player.coordenada_x;
-					double dy = inimigo2.coordenada_y[i] - player.coordenada_y;
-					double dist = Math.sqrt(dx * dx + dy * dy);
-					if(dist < (player.raio + inimigo2.raio) * 0.8){
-						player.estado = EXPLODING;
-						player.explosion_start = currentTime;
-						player.explosion_end = currentTime + 2000;
-					}
-				}
-				for(int i = 0; i < inimigo3.estados.length; i++){
-					double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
-					double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
-					double dist = Math.sqrt(dx * dx + dy * dy);
-					if(dist < (player.raio + inimigo3.raio) * 0.8){
-						player.estado = EXPLODING;
-						player.explosion_start = currentTime;
-						player.explosion_end = currentTime + 2000;
-					}
-				}
-				*/
+
 			}
 
 			/* colisões projeteis (player) - inimigos */
@@ -558,14 +510,6 @@ public class Main {
 				}
 			}
 
-/*
-			APLICANDO PADRAO STATE
-			PlayerExploding.java
-			void tempoDeExplosao( currentTime ) {
-				if ( currentTIme > player.explosion_end )
-					estado = new PlayerActiveState(player);
-			}
-*/
 			/********************************************/
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
