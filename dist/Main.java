@@ -115,6 +115,16 @@ public class Main {
 		for ( int i = 0; i < 50; i++ )
 			segundoPlano.add( new SegundoPlano(0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.045, 0.0));
 
+
+		/* inicializações */
+
+		for(int i = 0; i < player.projectile.estadosProjetil.length; i++) player.projectile.estadosProjetil[i] = INACTIVE;
+		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
+
+		for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
+		for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
+		for(int i = 0; i < inimigo3.estados.length; i++) inimigo2.estados[i] = INACTIVE;
+
 		/* iniciado interface gráfica */
 
 		GameLib.initGraphics();
