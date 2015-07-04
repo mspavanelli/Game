@@ -1,14 +1,7 @@
 import java.awt.Color;
+
 public class Inimigo3 extends Inimigo {
 
-	//InimigoState inactiveState;
-	//InimigoState activeState;
-	//inimigoState explodingState;
-
-	//InimigoState state;
-
-	
-	
 	public double spawnX;
 	public int count;
 	public long nextEnemy3;
@@ -28,30 +21,8 @@ public class Inimigo3 extends Inimigo {
 		this.count=count;
 		this.raio=raio;
 		this.nextEnemy3=nextEnemy3;
-
-		//inactiveState = new InimigoInactiveState(this);
-		//activeState = new InimigoActiveState(this);
-		//explodingState = new InimigoExplodingState(this);
 	}
 
-
-	//InimigoState state;
-	/*
-	void setState(InimigoState state){
-		this.state=state;
-	}
-	public InimigoState getInactiveState(){
-		return this.inactiveState;
-	}
-
-	public InimigoState getActiveState(){
-		return this.activeState;
-	}
-
-	public InimigoState getExplodingState(){
-		return this.explodingState;
-	}
-	*/
 	public void desenha(long currentTime){
 		for(int i = 0; i < estados.length; i++){
 
