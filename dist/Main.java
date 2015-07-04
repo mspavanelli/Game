@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.awt.Color;
 
@@ -189,41 +190,30 @@ public class Main {
 				colisaoPlayerComInimigos( player, inimigo3, currentTime );
 /*
 				for(int i = 0; i < inimigo1.estados.length; i++){
-
 					double dx = inimigo1.coordenada_x[i] - player.coordenada_x;
 					double dy = inimigo1.coordenada_y[i] - player.coordenada_y;
 					double dist = Math.sqrt(dx * dx + dy * dy);
-
 					if(dist < (player.raio + inimigo1.raio) * 0.8){
-
 						player.estado = EXPLODING;
 						player.explosion_start = currentTime;
 						player.explosion_end = currentTime + 2000;
 					}
 				}
-
 				for(int i = 0; i < inimigo2.estados.length; i++){
-
 					double dx = inimigo2.coordenada_x[i] - player.coordenada_x;
 					double dy = inimigo2.coordenada_y[i] - player.coordenada_y;
 					double dist = Math.sqrt(dx * dx + dy * dy);
-
 					if(dist < (player.raio + inimigo2.raio) * 0.8){
-
 						player.estado = EXPLODING;
 						player.explosion_start = currentTime;
 						player.explosion_end = currentTime + 2000;
 					}
 				}
-
 				for(int i = 0; i < inimigo3.estados.length; i++){
-
 					double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
 					double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
 					double dist = Math.sqrt(dx * dx + dy * dy);
-
 					if(dist < (player.raio + inimigo3.raio) * 0.8){
-
 						player.estado = EXPLODING;
 						player.explosion_start = currentTime;
 						player.explosion_end = currentTime + 2000;
@@ -570,14 +560,11 @@ public class Main {
 
 /*
 			APLICANDO PADRAO STATE
-
 			PlayerExploding.java
-
 			void tempoDeExplosao( currentTime ) {
 				if ( currentTIme > player.explosion_end )
 					estado = new PlayerActiveState(player);
 			}
-
 */
 			/********************************************/
 			/* Verificando entrada do usuário (teclado) */
