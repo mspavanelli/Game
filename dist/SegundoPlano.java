@@ -1,14 +1,15 @@
 import java.awt.Color;
 
+
 public class SegundoPlano extends Fundo {
 
-	static double count;
-	static double speed;
+	public static double speed;
+	public static double count;
 	
 	public SegundoPlano(int estado, double coordenada_x, double coordenada_y, double speed, double count) {
-		super(estado, coordenada_x, coordenada_y);
-		this.count = count;
+		super(estado, coordenada_x, coordenada_y, speed, count);
 		this.speed = speed;
+		this.count = count;
 	}
 
 	public void desenha( long currentTime ) {

@@ -92,37 +92,25 @@ public class Main {
 
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2, quanto tipo 3) */
 		InimigoProjectile inimigoProjectile = new InimigoProjectile(new int[200],new double[200],new double[200],new double[200],new double[200],2.0);
-		/* estrelas que formam o fundo de primeiro plano */
 
-		double [] background1_X = new double[20];
-		double [] background1_Y = new double[20];
-		double background1_speed = 0.070;
-		double background1_count = 0.0;
 
-		/* estrelas que formam o fundo de segundo plano */
 
-		double [] background2_X = new double[50];
-		double [] background2_Y = new double[50];
-		double background2_speed = 0.045;
-		double background2_count = 0.0;
-				/* inicializações */
+		ArrayList<PrimeiroPlano> primeiroPlano = new ArrayList<>();
+		for ( int i = 0; i < 20; i++ )
+			primeiroPlano.add( new PrimeiroPlano( 0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.070, 0.0) );
+		
+		ArrayList<SegundoPlano> segundoPlano = new ArrayList<>();
+		for ( int i = 0; i < 50; i++ )
+			segundoPlano.add( new SegundoPlano(0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.045, 0.0));
+
+		/* inicializações */
 
 		for(int i = 0; i < player.projectile.estadosProjetil.length; i++) player.projectile.estadosProjetil[i] = INACTIVE;
 		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
 	//	for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
 	//		for(int i = 0; i < inimigo3.estados.length; i++) inimigo3.estados[i] = INACTIVE;
 
-	for(int i = 0; i < background1_X.length; i++){
 
-		background1_X[i] = Math.random() * GameLib.WIDTH;
-		background1_Y[i] = Math.random() * GameLib.HEIGHT;
-	}
-
-	for(int i = 0; i < background2_X.length; i++){
-
-		background2_X[i] = Math.random() * GameLib.WIDTH;
-		background2_Y[i] = Math.random() * GameLib.HEIGHT;
-	}
 
 
 
@@ -783,23 +771,16 @@ public class Main {
 
 			/* desenhando plano fundo distante */
 
-			GameLib.setColor(Color.DARK_GRAY);
-			background2_count += background2_speed * delta;
-
-			for(int i = 0; i < background2_X.length; i++){
-
-				GameLib.fillRect(background2_X[i], (background2_Y[i] + background2_count) % GameLib.HEIGHT, 2, 2);
+			SegundoPlano.count += SegundoPlano.speed * delta;
+			for ( int i = 0; i < 50; i++ ) {
+				segundoPlano.get(i).desenha( currentTime );
 			}
-
+			
 			/* desenhando plano de fundo próximo */
 
-			GameLib.setColor(Color.GRAY);
-			background1_count += background1_speed * delta;
-
-			for(int i = 0; i < background1_X.length; i++){
-
-				GameLib.fillRect(background1_X[i], (background1_Y[i] + background1_count) % GameLib.HEIGHT, 3, 3);
-			}
+			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
+			for ( int i = 0; i < 20; i++ )
+				primeiroPlano.get(i).desenha( currentTime );
 
 
 			/* desenhando player */
