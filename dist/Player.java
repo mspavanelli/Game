@@ -40,6 +40,7 @@ public class Player{
 		return this.explodingState;
 	}
 */
+	
 	//controle de movimento do player
 	public void controleMovimetoPlayer(long currentTime, long delta){
 		if(estado == 1){

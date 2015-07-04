@@ -54,44 +54,46 @@ public class Main {
 		return freeArray;
 	}
 
+	public static void colisaoProjetilPlayerComInimigos( Player player, Inimigo inimigoX, long currentTime, int k ) {
+		for(int i = 0; i < inimigoX.estados.length; i++){
+			if(inimigoX.estados[i] == ACTIVE){
+
+				double dx = inimigoX.coordenada_x[i] - player.projectile.coordenada_x[k];
+				double dy = inimigoX.coordenada_y[i] - player.projectile.coordenada_y[k];
+				double dist = Math.sqrt(dx * dx + dy * dy);			
+
+				if(dist < inimigoX.raio){
+
+					inimigoX.estados[i] = EXPLODING;
+					inimigoX.explosion_start[i] = currentTime;
+					inimigoX.explosion_end[i] = currentTime + 500;
+				}
+			}
+		}
+	}
+
 	/* Método principal */
 
 	public static void main(String [] args){
 
-		/* Indica que o jogo está em execução */
 		boolean running = true;
-
-		/* variáveis usadas no controle de tempo efetuado no main loop */
-
 		long delta;
 		long currentTime = System.currentTimeMillis();
 
-		/* variáveis dos projéteis disparados pelo player */
-		/* variáveis do player */
-		Player player = new Player(new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10]),
-		ACTIVE,  GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0 , 0, 0, currentTime);
+		Player player = new Player(new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10]), ACTIVE,  GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0 , 0, 0, currentTime);
 
-		/* variáveis dos inimigos tipo 1 */
-		Inimigo1 inimigo1 = new Inimigo1(new int[10],new double[10], new double[10],new double[10],new double[10],new double[10],
-																		 new double[10],new double[10],new long[10], 9.0 ,currentTime + 2000);
-
-		/* variáveis dos inimigos tipo 2 */
-		Inimigo2 inimigo2 = new Inimigo2(new int[10], new double[10],  new double[10], new double[10], new double[10],
-		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,12.0,currentTime + 7000);
-
-		Inimigo3 inimigo3 = new Inimigo3(new int[10], new double[10],  new double[10], new double[10], new double[10],
-		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,20.0,currentTime + 10000);
+		Inimigo1 inimigo1 = new Inimigo1(new int[10],new double[10], new double[10],new double[10],new double[10],new double[10], new double[10],new double[10],new long[10], 9.0 ,currentTime + 2000);
+		Inimigo2 inimigo2 = new Inimigo2(new int[10], new double[10],  new double[10], new double[10], new double[10], new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,12.0,currentTime + 7000);
+		Inimigo3 inimigo3 = new Inimigo3(new int[10], new double[10],  new double[10], new double[10], new double[10], new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,20.0,currentTime + 10000);
 
 		/* variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto tipo 2, quanto tipo 3) */
 		InimigoProjectile inimigoProjectile = new InimigoProjectile(new int[200],new double[200],new double[200],new double[200],new double[200],2.0);
 		
-		/* estrelas que formam o fundo de primeiro plano */
+		/* estrelas que formam o fundo próximo e distante */
 
 		ArrayList<PrimeiroPlano> primeiroPlano = new ArrayList<>();
 		for ( int i = 0; i < 20; i++ )
 			primeiroPlano.add( new PrimeiroPlano( 0, Math.random() * GameLib.WIDTH, Math.random() * GameLib.HEIGHT, 0.070, 0.0) );
-
-		/* estrelas que formam o fundo de segundo plano */
 
 		ArrayList<SegundoPlano> segundoPlano = new ArrayList<>();
 		for ( int i = 0; i < 50; i++ )
@@ -102,8 +104,9 @@ public class Main {
 
 		for(int i = 0; i < player.projectile.estadosProjetil.length; i++) player.projectile.estadosProjetil[i] = INACTIVE;
 		for(int i = 0; i < inimigoProjectile.estados.length; i++) inimigoProjectile.estados[i] = INACTIVE;
-		for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
-		for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
+			
+		// for(int i = 0; i < inimigo1.estados.length; i++) inimigo1.estados[i] = INACTIVE;
+		// for(int i = 0; i < inimigo2.estados.length; i++) inimigo2.estados[i] = INACTIVE;
 		for(int i = 0; i < inimigo3.estados.length; i++) inimigo2.estados[i] = INACTIVE;
 
 		/* iniciado interface gráfica */
@@ -145,7 +148,7 @@ public class Main {
 			/* Verificação de colisões */
 			/***************************/
 
-			if(player.estado == ACTIVE){
+			if(player.estado == ACTIVE) {
 
 				/* colisões player - projeteis (inimigo) */
 
@@ -210,8 +213,13 @@ public class Main {
 
 			/* colisões projeteis (player) - inimigos */
 
-			for(int k = 0; k < player.projectile.estadosProjetil.length; k++){
+			for(int k = 0; k < player.projectile.estadosProjetil.length; k++) {
 
+				colisaoProjetilPlayerComInimigos( player, inimigo1, currentTime, k );
+				colisaoProjetilPlayerComInimigos( player, inimigo2, currentTime, k );
+				colisaoProjetilPlayerComInimigos( player, inimigo3, currentTime, k );
+
+/*
 				for(int i = 0; i < inimigo1.estados.length; i++){
 
 					if(inimigo1.estados[i] == ACTIVE){
@@ -262,6 +270,7 @@ public class Main {
 						}
 					}
 				}
+*/
 			}
 
 			/***************************/
@@ -592,6 +601,17 @@ public class Main {
 				}
 			}
 
+/*
+			APLICANDO PADRAO STATE
+
+			PlayerExploding.java
+
+			void tempoDeExplosao( currentTime ) {
+				if ( currentTIme > player.explosion_end )
+					estado = new PlayerActiveState(player);
+			}
+
+*/
 			/********************************************/
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
@@ -607,31 +627,21 @@ public class Main {
 			/* Desenho da cena */
 			/*******************/
 
-			/* desenhando plano fundo distante */
-			/* desenhando plano de fundo próximo */
-			/* desenhando player */
-			/* deenhando projeteis (player) */
-			/* desenhando projeteis (inimigos) */
-			/* desenhando inimigos (tipo 1) */
-			/* desenhando inimigos (tipo 2) */
-			/* desenhando inimigos (tipo 3) */
-			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
-
+			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
+			for ( int i = 0; i < 20; i++ )
+				primeiroPlano.get(i).desenha( currentTime );
+			
 			SegundoPlano.count += SegundoPlano.speed * delta;
 			for ( int i = 0; i < 50; i++ )
 				segundoPlano.get(i).desenha( currentTime );
 
-			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
-			for ( int i = 0; i < 20; i++ )
-				primeiroPlano.get(i).desenha( currentTime );
-
 			player.desenha(currentTime);
 			player.projectile.desenha();
 
-			inimigoProjectile.desenha();
 			inimigo1.desenha(currentTime);
 			inimigo2.desenha(currentTime);
 			inimigo3.desenha(currentTime);
+			inimigoProjectile.desenha();
 
 			GameLib.display();
 

@@ -1,27 +1,14 @@
 import java.awt.Color;
-public class Inimigo2{
 
-	//InimigoState inactiveState;
-	//InimigoState activeState;
-	//inimigoState explodingState;
+public class Inimigo2 extends Inimigo {
 
-	public int [] estados;
-	public double [] coordenada_x;
-	public double [] coordenada_y;
-	public double [] velocidade;
-	public double [] angulo;
-	public double [] velocidadeRotacao;
-	public double [] explosion_start;
-	public double [] explosion_end;
 	public double spawnX;
-	public int count;
-	public double raio;
 	public long nextEnemy2;
 
 	public Inimigo2(int [] estados,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
 		double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
 		double spawnX,int count,double raio,long nextEnemy2){
-		this.estados=estados;
+		super( estados );
 		this.coordenada_x=coordenada_x;
 		this.coordenada_y=coordenada_y;
 		this.velocidade=velocidade;
