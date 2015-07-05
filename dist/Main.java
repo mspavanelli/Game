@@ -688,10 +688,7 @@ public class Main {
 
 			GameLib.display();
 
-			/*
-			 * faz uma pausa de modo que cada execução do laço do main loop
-			 * demore aproximadamente 5 ms.
-			 */
+			// faz uma pausa de modo que cada execução do laço do main loop * demore aproximadamente 5 ms.
 
 			busyWait(currentTime + 5);
 		}

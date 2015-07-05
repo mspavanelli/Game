@@ -1,6 +1,6 @@
 # Game
 
-Mais informações no DOC
+**Status**: **80%** concluído
 
 ## Organização
 
@@ -13,7 +13,7 @@ Mais informações no DOC
 
 - [x] Criar novo inimigo
 - [x] Criar PowerUps (desenho e comportamentos)
-- [ ] Simplificação dos laços (Strategy)
+- [ ] Simplificação dos laços (Façade)
 - [ ] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
 
 
@@ -22,9 +22,9 @@ Mais informações no DOC
 - [x] Análise
 - [x] Separar o código em classes
 - [ ] Aplicar Padrões
-	- [ ] Singleton
-	- [ ] State
-	- [ ] Strategy
+	- [ ] Singleton	(Player)
+	- [ ] Façade	(Colisões)
+	- [ ] Strategy	(Inimigos)
 - [x] Criar novo inimigo
 - [x] Power-ups
 
