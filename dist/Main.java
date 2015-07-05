@@ -669,12 +669,10 @@ public class Main {
 			/*******************/
 
 			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
-			for (PrimeiroPlano pp : primeiroPlano)
-				pp.desenha(currentTime);
+			for (PrimeiroPlano pp : primeiroPlano) pp.desenha(currentTime);
 
 			SegundoPlano.count += SegundoPlano.speed * delta;
-			for (SegundoPlano sp : segundoPlano)
-				sp.desenha(currentTime);
+			for (SegundoPlano sp : segundoPlano) sp.desenha(currentTime);
 
 			player.desenha(currentTime);
 			player.projectile.desenha();
