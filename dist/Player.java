@@ -44,7 +44,7 @@ public class Player{
 				if(currentTime > nextShot){
 
 
-					int free = Main.findFreeIndex(projectile.estadosProjetil);
+					int free = GerenciamentoEstruturas.findFreeIndex(projectile.estadosProjetil);
 
 					if(free < projectile.estadosProjetil.length){
 

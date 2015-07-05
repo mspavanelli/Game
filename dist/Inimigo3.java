@@ -15,11 +15,11 @@ public class Inimigo3{
   public double spawnX;
   public int count;
   public double raio;
-  public long nextEnemy3;
+  public long nextEnemy;
 
   public Inimigo3(boolean verificaExplosao,int [] estado,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
     double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
-    double spawnX,int count,double raio,long nextEnemy2){
+    double spawnX,int count,double raio){
     this.verificaExplosao=verificaExplosao;
     this.estado=estado;
     this.coordenada_x=coordenada_x;
@@ -32,8 +32,6 @@ public class Inimigo3{
     this.spawnX=spawnX;
     this.count=count;
     this.raio=raio;
-    this.nextEnemy3=nextEnemy3;
-
   }
   public void desenha(long currentTime){
     for(int i = 0; i < estado.length; i++){

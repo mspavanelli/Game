@@ -13,6 +13,7 @@ public abstract class Inimigo {
 	public double raio;
 	boolean verificaExplosao;
 	boolean saiudaTela;
+	public long nextEnemy;
 
 	public Inimigo(boolean verificaExplosao,int [] estado,double [] coordenada_x,double [] coordenada_y,double [] velocidade, double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end, double spawnX,int count,double raio) {
 		this.verificaExplosao = verificaExplosao;

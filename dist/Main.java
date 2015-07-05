@@ -8,42 +8,17 @@ public class Main {
 	public static final int ACTIVE = 1;
 	public static final int EXPLODING = 2;
 
-	public static void busyWait(long time) {
-
-		while (System.currentTimeMillis() < time)
-			Thread.yield();
-	}
-
-	public static int findFreeIndex(int[] stateArray) {
-		int i;
-		for (i = 0; i < stateArray.length; i++)
-			if (stateArray[i] == INACTIVE) break;
-		return i;
-	}
-
-	public static int[] findFreeIndex(int[] stateArray, int amount) {
-
-		int i, k;
-		int[] freeArray = { stateArray.length, stateArray.length,
-				stateArray.length };
-
-		for (i = 0, k = 0; i < stateArray.length && k < amount; i++) {
-
-			if (stateArray[i] == INACTIVE) {
-
-				freeArray[k] = i;
-				k++;
-			}
-		}
-
-		return freeArray;
-	}
-
 	public static void atualizaEstadoInimigos() {}
 
-	public static void verificaLancamentoNovosInimigos() {}
+	public static void verificaLancamentoNovosInimigos( ListaInimigoX listaInimigoX, long currentTime ) {
+
+	}
 
 	public static void colisaoProjeteisComPlayer() {}
+
+	public static void testeInimigosGenericos( ListaInimigoX listaInimigo ) {
+
+	}
 
 	/* Método principal */
 
@@ -55,8 +30,7 @@ public class Main {
 		long currentTime = System.currentTimeMillis();
 
 		Player player = new Player(new PowerUp2(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 25000),
-		new
-		PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10],
+		new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10],
 		new PowerUp1(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07,
 		 3 * Math.PI / 2, 0.0, 9.0, currentTime + 20000)),
 		ACTIVE, GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0, 0, 0, currentTime);
@@ -64,10 +38,9 @@ public class Main {
 		ListInimigo1 listaInimigo1 = new ListInimigo1(new LinkedList<Inimigo1>(), currentTime + 2000);
 
 		ListInimigo2 listaInimigo2 =new ListInimigo2(new LinkedList<Inimigo2>());
-		listaInimigo2.addLista(currentTime,1);
-
 		ListInimigo3 listaInimigo3 = new ListInimigo3(new LinkedList<Inimigo3>());
-
+		
+		listaInimigo2.addLista(currentTime,1);
 		listaInimigo3.addLista(currentTime,1);
 
 		// variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto * tipo 2, quanto tipo 3)
@@ -394,7 +367,7 @@ public class Main {
 
 						if (currentTime > listaInimigo1.getListInimigo1().get(i).getnextShot() && listaInimigo1.getListInimigo1().get(i).getCoordenaday() < player.coordenada_y) {
 
-							int free = findFreeIndex(inimigoProjectile.estados);
+							int free = GerenciamentoEstruturas.findFreeIndex(inimigoProjectile.estados);
 							if (free < inimigoProjectile.estados.length) {
 
 								inimigoProjectile.coordenada_x[free] = listaInimigo1.getListInimigo1().get(i).getCoordenadax();
@@ -509,7 +482,7 @@ public class Main {
 						if(shootNow){
 
 							double [] angles = { Math.PI/2 + Math.PI/8, Math.PI/2, Math.PI/2 - Math.PI/8 };
-							int [] freeArray = findFreeIndex(inimigoProjectile.estados, angles.length);
+							int [] freeArray = GerenciamentoEstruturas.findFreeIndex(inimigoProjectile.estados, angles.length);
 
 							for(int k = 0; k < freeArray.length; k++){
 
@@ -608,7 +581,7 @@ public class Main {
 						if (shootNow) {
 
 							double[] angles = { Math.PI / 2, Math.PI / 2, Math.PI / 2 };
-							int[] freeArray = findFreeIndex(inimigoProjectile.estados, angles.length);
+							int[] freeArray = GerenciamentoEstruturas.findFreeIndex(inimigoProjectile.estados, angles.length);
 
 							for (int k = 0; k < freeArray.length; k++) {
 
@@ -648,9 +621,9 @@ public class Main {
 				player.powerUp2.estadop2 = ACTIVE;
 
 			/* verificando se novos inimigos (tipo 2) devem ser "lançados" */
-			if(currentTime > listaInimigo2.lista.get(0).nextEnemy2){
+			if(currentTime > listaInimigo2.lista.get(0).nextEnemy){
 
-				int free = findFreeIndex(listaInimigo2.lista.get(0).estado);
+				int free = GerenciamentoEstruturas.findFreeIndex(listaInimigo2.lista.get(0).estado);
 
 				if(free < listaInimigo2.lista.get(0).estado.length){
 
@@ -665,22 +638,25 @@ public class Main {
 
 					if(listaInimigo2.lista.get(0).count < 10){
 
-						listaInimigo2.lista.get(0).nextEnemy2 = currentTime + 120;
+						listaInimigo2.lista.get(0).nextEnemy = currentTime + 120;
 					}
 					else {
 
 						listaInimigo2.lista.get(0).count = 0;
 						listaInimigo2.lista.get(0).spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
-						listaInimigo2.lista.get(0).nextEnemy2 = (long) (currentTime + 7000 + Math.random() * 7000);
+						listaInimigo2.lista.get(0).nextEnemy = (long) (currentTime + 7000 + Math.random() * 7000);
 					}
 				}
 			}
 
 			/* verificando se novos inimigos (tipo 3) devem ser "lançados" */
 
-			if (currentTime > listaInimigo3.lista.get(0).nextEnemy3) {
+			// verificaLancamentoNovosInimigos( listaInimigo3, currentTime );
+			// testeInimigosGenericos( listaInimigo3 );
+			
+			if (currentTime > listaInimigo3.lista.get(0).nextEnemy) {
 
-				int free = findFreeIndex(listaInimigo3.lista.get(0).estado);
+				int free = GerenciamentoEstruturas.findFreeIndex(listaInimigo3.lista.get(0).estado);
 				if (free < listaInimigo3.lista.get(0).estado.length) {
 					listaInimigo3.lista.get(0).coordenada_x[free] = listaInimigo3.lista.get(0).spawnX;
 					listaInimigo3.lista.get(0).coordenada_y[free] = -10.0;
@@ -691,14 +667,16 @@ public class Main {
 
 					listaInimigo3.lista.get(0).count++;
 
-					if (listaInimigo3.lista.get(0).count < 10) listaInimigo3.lista.get(0).nextEnemy3 = currentTime;
+					if (listaInimigo3.lista.get(0).count < 10) listaInimigo3.lista.get(0).nextEnemy = currentTime;
 					else {
 						listaInimigo3.lista.get(0).count = 0;
 						listaInimigo3.lista.get(0).spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
-						listaInimigo3.lista.get(0).nextEnemy3 = (long) (currentTime + 8000 - Math .random() * 8000);
+						listaInimigo3.lista.get(0).nextEnemy = (long) (currentTime + 8000 - Math .random() * 8000);
 					}
 				}
 			}
+			
+
 
 			/* Verificando se a explosão do player já acabou. */
 			/* Ao final da explosão, o player volta a ser controlável */
@@ -746,7 +724,7 @@ public class Main {
 
 			// faz uma pausa de modo que cada execução do laço do main loop * demore aproximadamente 5 ms.
 
-			busyWait(currentTime + 5);
+			GerenciamentoEstruturas.busyWait(currentTime + 5);
 		}
 
 		System.exit(0);

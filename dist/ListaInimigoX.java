@@ -1,6 +1,6 @@
 import java.util.List;
 
-public abstract class ListaInimigoX <T> {
+public abstract class ListaInimigoX <T extends Inimigo> {
 	
 	List<T> lista;
 

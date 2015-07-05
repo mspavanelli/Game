@@ -12,12 +12,12 @@ public class ListInimigo3 extends ListaInimigoX {
 	if(Math.random() > 0.5){
 		for(int i=0; i<=qtdeInimigos;i++){
 			lista.add(new Inimigo3(false,new int[10], new double[10],  new double[10], new double[10], new double[10],
-			new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.40,0,20.0,currentTime + (long) (currentTime + 8000 - Math .random() * 8000)));
+			new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.40,0,20.0));
 			}
 		} else {
 			for(int i=0; i<=qtdeInimigos;i++){
 				lista.add(new Inimigo3(false,new int[10], new double[10],  new double[10], new double[10], new double[10],
-				new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.60,0,20.0,(long) (currentTime + 8000 - Math .random() * 8000)));
+				new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.60,0,20.0));
 				}
 		}
 	}
