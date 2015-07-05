@@ -759,64 +759,32 @@ public class Main {
 			/********************************************/
 			/* Verificando entrada do usuário (teclado) */
 			/********************************************/
-			/* Verificando se coordenadas do player ainda estão dentro	*/
-			/* da tela de jogo após processar entrada do usuário.       */
 
-		running = player.controleMovimetoPlayer(currentTime, delta, running);
+			player.controleMovimetoPlayer(currentTime, delta, running);
+			if(GameLib.iskeyPressed(GameLib.KEY_ESCAPE)) running = false;
 
 			/*******************/
 			/* Desenho da cena */
 			/*******************/
 
-
-			/* desenhando plano fundo distante */
+			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
+			for ( int i = 0; i < 20; i++ )
+				primeiroPlano.get(i).desenha( currentTime );
 
 			SegundoPlano.count += SegundoPlano.speed * delta;
 			for ( int i = 0; i < 50; i++ ) {
 				segundoPlano.get(i).desenha( currentTime );
 			}
-			
-			/* desenhando plano de fundo próximo */
 
-			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
-			for ( int i = 0; i < 20; i++ )
-				primeiroPlano.get(i).desenha( currentTime );
+			player.desenha(currentTime);
+			player.projectile.desenha();
+			inimigoProjectile.desenha();
 
-
-			/* desenhando player */
-
-			player.desenhaPlayer(currentTime);
-
-			/* deenhando projeteis (player) */
-
-			player.projectile.desenhaProjetil();
-
-			/* desenhando projeteis (inimigos) */
-				inimigoProjectile.desenha();
-
-			/* desenhando inimigos (tipo 1) */
-
-			for(int i =0;i<listaInimigo1.lista.size();i++){
+			for(int i =0;i<listaInimigo1.lista.size();i++)
 				listaInimigo1.getListInimigo1().get(i).desenha(currentTime);
-			}
 
-
-
-			/* desenhando inimigos (tipo 2) */
-
-//		inimigo2.desenhaInimigo2(currentTime);
-
-			/* desenhando inimigos (tipo 3) */
-
-	//		 inimigo3.desenhaInimigo3(currentTime);
-
-			/* desenhando powerUp1 */
 			player.projectile.powerUp1.desenha();
-
-			/* desenhando powerUp1 */
 			player.powerUp2.desenha();
-
-			/* chamama a display() da classe GameLib atualiza o desenho exibido pela interface do jogo. */
 
 			GameLib.display();
 
