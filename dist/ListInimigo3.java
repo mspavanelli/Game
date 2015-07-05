@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class ListInimigo3 {
+public class ListInimigo3 extends ListaInimigoX {
 
 	List<Inimigo3> lista;
 
@@ -8,14 +8,14 @@ public class ListInimigo3 {
 		this.lista=lista;
 	}
 
-	public void addLista(long currentTime, int quantidadeInimigo3){
+	public void addLista(long currentTime, int qtdeInimigos){
 	if(Math.random() > 0.5){
-		for(int i=0; i<=quantidadeInimigo3;i++){
+		for(int i=0; i<=qtdeInimigos;i++){
 			lista.add(new Inimigo3(false,new int[10], new double[10],  new double[10], new double[10], new double[10],
 			new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.40,0,20.0,currentTime + (long) (currentTime + 8000 - Math .random() * 8000)));
 			}
 		} else {
-			for(int i=0; i<=quantidadeInimigo3;i++){
+			for(int i=0; i<=qtdeInimigos;i++){
 				lista.add(new Inimigo3(false,new int[10], new double[10],  new double[10], new double[10], new double[10],
 				new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.60,0,20.0,(long) (currentTime + 8000 - Math .random() * 8000)));
 				}

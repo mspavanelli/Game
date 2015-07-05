@@ -1,14 +1,12 @@
 import java.util.List;
 
-public abstract class ListaInimigoX {
+public abstract class ListaInimigoX <T> {
 	
-	List<Inimigo> lista;
+	List<T> lista;
 
-	public ListaInimigoX( List<Inimigo> lista ) {
-		this.lista = lista;
-	}
+	public abstract void addLista( long currentTime, int qtdeInimigos );
 
-	public List<Inimigo> getListInimigo(){
+	public List<T> getListInimigo(){
 		return this.lista;
 	}
 }

@@ -39,6 +39,11 @@ public class Main {
 		return freeArray;
 	}
 
+	public static void atualizaEstadoInimigos() {}
+
+	public static void verificaLancamentoNovosInimigos() {}
+
+	public static void colisaoProjeteisComPlayer() {}
 
 	/* Método principal */
 
