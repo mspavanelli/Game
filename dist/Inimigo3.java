@@ -1,12 +1,6 @@
 import java.awt.Color;
 public class Inimigo3{
 
-  //InimigoState inactiveState;
-  //InimigoState activeState;
-  //inimigoState explodingState;
-
-  //InimigoState state;
-
   public int [] estados;
   public double [] coordenada_x;
   public double [] coordenada_y;
@@ -37,30 +31,10 @@ public class Inimigo3{
     this.raio=raio;
     this.nextEnemy3=nextEnemy3;
 
-    //inactiveState = new InimigoInactiveState(this);
-    //activeState = new InimigoActiveState(this);
-    //explodingState = new InimigoExplodingState(this);
   }
 
 
-  //InimigoState state;
-  /*
-  void setState(InimigoState state){
-    this.state=state;
-  }
-  public InimigoState getInactiveState(){
-    return this.inactiveState;
-  }
-
-  public InimigoState getActiveState(){
-    return this.activeState;
-  }
-
-  public InimigoState getExplodingState(){
-    return this.explodingState;
-  }
-  */
-  public void desenhaInimigo3(long currentTime){
+  public void desenha(long currentTime){
     for(int i = 0; i < estados.length; i++){
 
       if(estados[i] == 2){

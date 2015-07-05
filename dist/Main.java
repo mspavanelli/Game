@@ -81,12 +81,12 @@ public class Main {
 		ListInimigo1 listaInimigo1 = new ListInimigo1(new LinkedList<Inimigo1>(), currentTime + 2000);
 
 		/* variáveis dos inimigos tipo 2 */
-		/*
+		
 		Inimigo2 inimigo2 = new Inimigo2(new int[10], new double[10],  new double[10], new double[10], new double[10],
 		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,12.0,currentTime + 7000);
 
 		/* variáveis dos inimigos tipo 3 */
-/*
+
 		Inimigo3 inimigo3 = new Inimigo3(new int[10], new double[10],  new double[10], new double[10], new double[10],
 		new double[10],new double[10],  new double[10],GameLib.WIDTH * 0.20,0,20.0,currentTime + 10000);
 
@@ -216,7 +216,7 @@ public class Main {
 						player.powerUp2.estado2=true;
 			      player.powerUp2.coordenada_y =	GameLib.HEIGHT;
 					}
-/*
+
 				for(int i = 0; i < inimigo2.estados.length; i++){
 
 					double dx = inimigo2.coordenada_x[i] - player.coordenada_x;
@@ -235,8 +235,8 @@ public class Main {
 					}
 				}
 
-*/
-/*
+
+
 			for(int i = 0; i < inimigo3.estados.length; i++){
 
 				double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
@@ -254,7 +254,7 @@ public class Main {
 						player.powerUp2.estado2=false;
 				}
 
-			}*/
+			}
 		}
 
 			/* colisões projeteis (player) - inimigos */
@@ -278,7 +278,7 @@ public class Main {
 						}
 					}
 
-/*
+
 					for(int i = 0; i < inimigo2.estados.length; i++){
 
 						if(inimigo2.estados[i] == ACTIVE){
@@ -295,8 +295,8 @@ public class Main {
 							}
 						}
 					}
-*/
-/*
+
+
 					for(int i = 0; i < inimigo3.estados.length; i++){
 
 						if(inimigo3.estados[i] == ACTIVE){
@@ -312,7 +312,7 @@ public class Main {
 								inimigo3.explosion_end[i] = currentTime + 500;
 							}
 						}
-					}*/
+					}
 				}
 		} else if(player.projectile.powerUp1.estado==true){
 
@@ -335,7 +335,7 @@ public class Main {
 							}
 						}
 
-/*
+
 						for(int i = 0; i < inimigo2.estados.length; i++){
 
 							if(inimigo2.estados[i] == ACTIVE){
@@ -368,7 +368,7 @@ public class Main {
 									inimigo3.explosion_end[i] = currentTime + 500;
 								}
 							}
-						}*/
+						}
 					}
 				}
 
@@ -508,7 +508,7 @@ public class Main {
 
 
 			/* inimigos tipo 2 */
-/*
+
 			for(int i = 0; i < inimigo2.estados.length; i++){
 
 				if(inimigo2.estados[i] == EXPLODING){
@@ -522,7 +522,7 @@ public class Main {
 				if(inimigo2.estados[i] == ACTIVE){
 
 					/* verificando se inimigo saiu da tela */
-/*
+
 					if(	inimigo2.coordenada_x[i] < -10 || inimigo2.coordenada_x[i] > GameLib.WIDTH + 10 ) {
 
 						inimigo2.estados[i] = INACTIVE;
@@ -585,7 +585,7 @@ public class Main {
 				}
 			}
 			/* inimigos tipo 3*/
-/*
+
 			for(int i = 0; i < inimigo3.estados.length; i++){
 
 				if(inimigo3.estados[i] == EXPLODING){
@@ -599,7 +599,7 @@ public class Main {
 				if(inimigo3.estados[i] == ACTIVE){
 
 					/* verificando se inimigo saiu da tela */
-/*
+
 					if(	inimigo3.coordenada_x[i] < -10 || inimigo3.coordenada_x[i] > GameLib.WIDTH + 10 ) {
 
 						inimigo3.estados[i] = INACTIVE;
@@ -686,7 +686,7 @@ public class Main {
 			}
 
 			/* verificando se novos inimigos (tipo 2) devem ser "lançados" */
-/*
+
 			if(currentTime > inimigo2.nextEnemy2){
 
 				int free = findFreeIndex(inimigo2.estados);
@@ -715,7 +715,7 @@ public class Main {
 				}
 			}
 			/* verificando se novos inimigos (tipo 3) devem ser "lançados" */
-/*
+
 			if(currentTime > inimigo3.nextEnemy3){
 
 				int free = findFreeIndex(inimigo3.estados);
@@ -779,6 +779,8 @@ public class Main {
 			player.desenha(currentTime);
 			player.projectile.desenha();
 			inimigoProjectile.desenha();
+			inimigo2.desenha(currentTime);
+			inimigo3.desenha(currentTime);
 
 			for(int i =0;i<listaInimigo1.lista.size();i++)
 				listaInimigo1.getListInimigo1().get(i).desenha(currentTime);
