@@ -7,4 +7,8 @@ public abstract class ListaInimigoX {
 	public ListaInimigoX( List<Inimigo> lista ) {
 		this.lista = lista;
 	}
+
+	public List<Inimigo> getListInimigo(){
+		return this.lista;
+	}
 }

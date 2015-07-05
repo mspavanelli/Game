@@ -39,6 +39,7 @@ public class Main {
 		return freeArray;
 	}
 
+
 	/* Método principal */
 
 	public static void main(String[] args) {
@@ -420,7 +421,7 @@ public class Main {
 				}
 			}
 
-			/* atualiza estado powerUp1 */
+			/* atualiza estado powerUp2 */
 
 			if (player.powerUp2.estadop2 == ACTIVE) {
 
@@ -527,7 +528,7 @@ public class Main {
 				}
 			}
 
-					/* inimigos tipo 3 */
+			/* inimigos tipo 3 */
 
 			for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
@@ -545,6 +546,7 @@ public class Main {
 					}
 				}
 			}
+
 			for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
 				if (listaInimigo3.lista.get(0).estado[i] == ACTIVE) {
