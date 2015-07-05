@@ -48,15 +48,24 @@ public class Main {
 		long delta;
 		long currentTime = System.currentTimeMillis();
 
-		Player player = new Player(new PowerUp2(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.10 + Math.random() * 0.10, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 25000), new PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10], new PowerUp1(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.10 + Math.random() * 0.10, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 20000)), ACTIVE, GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0, 0, 0, currentTime);
+		Player player = new Player(new PowerUp2(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 25000),
+		new
+		PlayerProjectile(new int[10], new double[10], new double[10], new double[10], new double[10],
+		new PowerUp1(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07,
+		 3 * Math.PI / 2, 0.0, 9.0, currentTime + 20000)),
+		ACTIVE, GameLib.WIDTH / 2, GameLib.HEIGHT * 0.90, 0.25, 0.25, 12.0, 0, 0, currentTime);
 
 		ListInimigo1 listaInimigo1 = new ListInimigo1(new LinkedList<Inimigo1>(), currentTime + 2000);
 
-		Inimigo2 inimigo2 = new Inimigo2(new int[10], new double[10], new double[10], new double[10], new double[10], new double[10], new double[10], new double[10], GameLib.WIDTH * 0.20, 0, 12.0, currentTime + 7000);
-		Inimigo3 inimigo3 = new Inimigo3(new int[10], new double[10], new double[10], new double[10], new double[10], new double[10], new double[10], new double[10], GameLib.WIDTH * 0.20, 0, 20.0, currentTime + 10000);
+		ListInimigo2 listaInimigo2 =new ListInimigo2(new LinkedList<Inimigo2>());
+		listaInimigo2.addLista(currentTime,1);
+
+		ListInimigo3 listaInimigo3 = new ListInimigo3(new LinkedList<Inimigo3>());
+
+		listaInimigo3.addLista(currentTime,1);
 
 		// variáveis dos projéteis lançados pelos inimigos (tanto tipo 1, quanto * tipo 2, quanto tipo 3)
-		
+
 		InimigoProjectile inimigoProjectile = new InimigoProjectile(new int[200], new double[200], new double[200], new double[200], new double[200], 2.0);
 
 		/* Plano de Fundo (próximo e distante) */
@@ -121,6 +130,9 @@ public class Main {
 					else if (dist < (player.raio + 15.1 + inimigoProjectile.raio) * 0.8 && player.powerUp2.estado2 == true) {
 						player.estado = ACTIVE;
 						player.powerUp2.estado2 = false;
+						inimigoProjectile.estados[i] = INACTIVE;
+						inimigoProjectile.coordenada_y[i] = GameLib.HEIGHT;
+
 					}
 				}
 
@@ -164,38 +176,38 @@ public class Main {
 					player.powerUp2.estado2 = true;
 					player.powerUp2.coordenada_y = GameLib.HEIGHT;
 				}
+				for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
-				for (int i = 0; i < inimigo2.estados.length; i++) {
-
-					double dx = inimigo2.coordenada_x[i] - player.coordenada_x;
-					double dy = inimigo2.coordenada_y[i] - player.coordenada_y;
+					double dx = listaInimigo2.lista.get(0).coordenada_x[i] - player.coordenada_x;
+					double dy = listaInimigo2.lista.get(0).coordenada_y[i] - player.coordenada_y;
 					double dist = Math.sqrt(dx * dx + dy * dy);
 
-					if (dist < (player.raio + inimigo2.raio) * 0.8 && player.powerUp2.estado2 == false) {
+					if(dist < (player.raio + listaInimigo2.lista.get(0).raio) * 0.8){
+
 						player.estado = EXPLODING;
 						player.explosion_start = currentTime;
 						player.explosion_end = currentTime + 2000;
-
 					}
-					else if (dist < (player.raio + 15.1 + inimigo2.raio) * 0.8 && player.powerUp2.estado2 == true) {
+					else if (dist < (player.raio + 15.1 + listaInimigo2.lista.get(0).raio) * 0.8 && player.powerUp2.estado2 == true) {
 						player.estado = ACTIVE;
 						player.powerUp2.estado2 = false;
 					}
 				}
 
-				for (int i = 0; i < inimigo3.estados.length; i++) {
 
-					double dx = inimigo3.coordenada_x[i] - player.coordenada_x;
-					double dy = inimigo3.coordenada_y[i] - player.coordenada_y;
+				for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
+
+					double dx = listaInimigo3.lista.get(0).coordenada_x[i] - player.coordenada_x;
+					double dy = listaInimigo3.lista.get(0).coordenada_y[i] - player.coordenada_y;
 					double dist = Math.sqrt(dx * dx + dy * dy);
 
-					if (dist < (player.raio + inimigo3.raio) * 0.8) {
+					if (dist < (player.raio + listaInimigo3.lista.get(0).raio) * 0.8) {
 						player.estado = EXPLODING;
 						player.explosion_start = currentTime;
 						player.explosion_end = currentTime + 2000;
 
 					}
-					else if (dist < (player.raio + 15.1 + inimigo3.raio) * 0.8 && player.powerUp2.estado2 == true) {
+					else if (dist < (player.raio + 15.1 + listaInimigo3.lista.get(0).raio) * 0.8 && player.powerUp2.estado2 == true) {
 						player.estado = ACTIVE;
 						player.powerUp2.estado2 = false;
 					}
@@ -223,34 +235,35 @@ public class Main {
 						}
 					}
 
-					for (int i = 0; i < inimigo2.estados.length; i++) {
+					for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
-						if (inimigo2.estados[i] == ACTIVE) {
+						if(listaInimigo2.lista.get(0).estado[i] == ACTIVE){
 
-							double dx = inimigo2.coordenada_x[i] - player.projectile.coordenada_x[k];
-							double dy = inimigo2.coordenada_y[i] - player.projectile.coordenada_y[k];
+							double dx = listaInimigo2.lista.get(0).coordenada_x[i] - player.projectile.coordenada_x[k];;
+							double dy = listaInimigo2.lista.get(0).coordenada_y[i] - player.projectile.coordenada_y[k];;
 							double dist = Math.sqrt(dx * dx + dy * dy);
 
-							if (dist < inimigo2.raio) {
-								inimigo2.estados[i] = EXPLODING;
-								inimigo2.explosion_start[i] = currentTime;
-								inimigo2.explosion_end[i] = currentTime + 500;
+							if(dist < listaInimigo2.lista.get(0).raio){
+
+								listaInimigo2.lista.get(0).estado[i] = EXPLODING;
+								listaInimigo2.lista.get(0).explosion_start[i] = currentTime;
+								listaInimigo2.lista.get(0).explosion_end[i] = currentTime + 500;
 							}
 						}
 					}
 
-					for (int i = 0; i < inimigo3.estados.length; i++) {
+					for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
-						if (inimigo3.estados[i] == ACTIVE) {
+						if (listaInimigo3.lista.get(0).estado[i] == ACTIVE) {
 
-							double dx = inimigo3.coordenada_x[i] - player.projectile.coordenada_x[k];
-							double dy = inimigo3.coordenada_y[i] - player.projectile.coordenada_y[k];
+							double dx = listaInimigo3.lista.get(0).coordenada_x[i] - player.projectile.coordenada_x[k];
+							double dy = listaInimigo3.lista.get(0).coordenada_y[i] - player.projectile.coordenada_y[k];
 							double dist = Math.sqrt(dx * dx + dy * dy);
 
-							if (dist < inimigo3.raio) {
-								inimigo3.estados[i] = EXPLODING;
-								inimigo3.explosion_start[i] = currentTime;
-								inimigo3.explosion_end[i] = currentTime + 500;
+							if (dist < listaInimigo3.lista.get(0).raio) {
+								listaInimigo3.lista.get(0).estado[i] = EXPLODING;
+								listaInimigo3.lista.get(0).explosion_start[i] = currentTime;
+								listaInimigo3.lista.get(0).explosion_end[i] = currentTime + 500;
 							}
 						}
 					}
@@ -268,7 +281,7 @@ public class Main {
 							double dy = listaInimigo1.getListInimigo1().get(i).getCoordenaday() - player.projectile.coordenada_y[k];
 							double dist = Math.sqrt(dx * dx + dy * dy);
 
-							if (dist < player.projectile.powerUp1.raio - 2 + listaInimigo1.getListInimigo1().get(i) .getRaio() * 0.8) {
+							if (dist < player.projectile.powerUp1.raio - 2 + listaInimigo1.getListInimigo1().get(i).getRaio() * 0.8) {
 								listaInimigo1.getListInimigo1().get(i).setEstado(EXPLODING);
 								listaInimigo1.getListInimigo1().get(i).setExplosionS(currentTime);
 								listaInimigo1.getListInimigo1().get(i).setExplosionE(currentTime + 500);
@@ -276,35 +289,35 @@ public class Main {
 						}
 					}
 
-					for (int i = 0; i < inimigo2.estados.length; i++) {
+					for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
-						if (inimigo2.estados[i] == ACTIVE) {
+						if(listaInimigo2.lista.get(0).estado[i] == ACTIVE){
 
-							double dx = inimigo2.coordenada_x[i] - player.projectile.coordenada_x[k];
-							double dy = inimigo2.coordenada_y[i] - player.projectile.coordenada_y[k];
+							double dx = listaInimigo2.lista.get(0).coordenada_x[i] - player.projectile.coordenada_x[k];;
+							double dy = listaInimigo2.lista.get(0).coordenada_y[i] - player.projectile.coordenada_y[k];;
 							double dist = Math.sqrt(dx * dx + dy * dy);
 
-							if (dist < (player.projectile.powerUp1.raio - 2 + inimigo2.raio) * 0.8) {
+							if(dist < (player.projectile.powerUp1.raio - 2 + listaInimigo2.lista.get(0).raio) * 0.8){
 
-								inimigo2.estados[i] = EXPLODING;
-								inimigo2.explosion_start[i] = currentTime;
-								inimigo2.explosion_end[i] = currentTime + 500;
+								listaInimigo2.lista.get(0).estado[i] = EXPLODING;
+								listaInimigo2.lista.get(0).explosion_start[i] = currentTime;
+								listaInimigo2.lista.get(0).explosion_end[i] = currentTime + 500;
 							}
 						}
 					}
 
-					for (int i = 0; i < inimigo3.estados.length; i++) {
+					for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
-						if (inimigo3.estados[i] == ACTIVE) {
+						if (listaInimigo3.lista.get(0).estado[i] == ACTIVE) {
 
-							double dx = inimigo3.coordenada_x[i] - player.projectile.coordenada_x[k];
-							double dy = inimigo3.coordenada_y[i] - player.projectile.coordenada_y[k];
+							double dx = listaInimigo3.lista.get(0).coordenada_x[i] - player.projectile.coordenada_x[k];
+							double dy = listaInimigo3.lista.get(0).coordenada_y[i] - player.projectile.coordenada_y[k];
 							double dist = Math.sqrt(dx * dx + dy * dy);
 
-							if (dist < (player.projectile.powerUp1.raio - 2 + inimigo3.raio) * 0.8) {
-								inimigo3.estados[i] = EXPLODING;
-								inimigo3.explosion_start[i] = currentTime;
-								inimigo3.explosion_end[i] = currentTime + 500;
+							if (dist < (player.projectile.powerUp1.raio - 2 + listaInimigo3.lista.get(0).raio) * 0.8) {
+								listaInimigo3.lista.get(0).estado[i] = EXPLODING;
+								listaInimigo3.lista.get(0).explosion_start[i] = currentTime;
+								listaInimigo3.lista.get(0).explosion_end[i] = currentTime + 500;
 							}
 						}
 					}
@@ -378,7 +391,7 @@ public class Main {
 							int free = findFreeIndex(inimigoProjectile.estados);
 							if (free < inimigoProjectile.estados.length) {
 
-								inimigoProjectile.coordenada_x[free] = listaInimigo1.getListInimigo1().get(i).getCoordenadax(); 
+								inimigoProjectile.coordenada_x[free] = listaInimigo1.getListInimigo1().get(i).getCoordenadax();
 								inimigoProjectile.coordenada_y[free] = listaInimigo1.getListInimigo1().get(i).getCoordenaday();
 								inimigoProjectile.velocidade_x[free] = Math.cos(listaInimigo1.getListInimigo1().get(i).getAngulo()) * 0.45;
 								inimigoProjectile.velocidade_y[free] = Math.sin(listaInimigo1.getListInimigo1().get(i).getAngulo()) * 0.45 * (-1.0);
@@ -398,7 +411,7 @@ public class Main {
 				if (player.projectile.powerUp1.coordenada_y > GameLib.HEIGHT + 10 && player.projectile.powerUp1.estado == false) {
 
 					player.projectile.powerUp1.estadop1 = INACTIVE;
-					player.projectile.powerUp1 = new PowerUp1(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.10 + Math.random() * 0.10, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 20000);
+					player.projectile.powerUp1 = new PowerUp1(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 20000);
 				}
 				else {
 					player.projectile.powerUp1.coordenada_x += player.projectile.powerUp1.velocidade * Math.cos(player.projectile.powerUp1.angulo) * delta;
@@ -415,10 +428,10 @@ public class Main {
 				if (player.powerUp2.coordenada_y > GameLib.HEIGHT + 10 && player.powerUp2.estado2 == false) {
 
 					player.powerUp2.estadop2 = INACTIVE;
-					player.powerUp2 = new PowerUp2(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.10 + Math.random() * 0.10, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 25000);
+					player.powerUp2 = new PowerUp2(false, 0, Math.random() * (GameLib.WIDTH - 20.0) + 10.0, -10.0, 0.07 + Math.random() * 0.07, 3 * Math.PI / 2, 0.0, 9.0, currentTime + 25000);
 				}
 				else {
-					player.powerUp2.coordenada_x += player.powerUp2.velocidade * Math.cos(player.powerUp2.angulo) * delta; 
+					player.powerUp2.coordenada_x += player.powerUp2.velocidade * Math.cos(player.powerUp2.angulo) * delta;
 					player.powerUp2.coordenada_y += player.powerUp2.velocidade * Math.sin(player.powerUp2.angulo) * delta * (-1.0);
 					player.powerUp2.angulo += player.powerUp2.velocidadeRotacao * delta;
 				}
@@ -426,64 +439,84 @@ public class Main {
 
 			/* inimigos tipo 2 */
 
-			for (int i = 0; i < inimigo2.estados.length; i++) {
+			for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
-				if (inimigo2.estados[i] == EXPLODING) {
+				if(listaInimigo2.lista.get(0).estado[i] == EXPLODING){
+					listaInimigo2.lista.get(0).verificaExplosao();
+					//System.out.println(listaInimigo2.lista.get(0).verificaExplosao);
+					if(currentTime > listaInimigo2.lista.get(0).explosion_end[i]){
 
-					if (currentTime > inimigo2.explosion_end[i]) {
+						listaInimigo2.lista.get(0).estado[i] = INACTIVE;
+						if(	listaInimigo2.lista.get(0).verificaExplosao==true){
+							listaInimigo2.lista.remove(0);
+							listaInimigo2.addLista(currentTime,1);
 
-						inimigo2.estados[i] = INACTIVE;
+						}
 					}
 				}
+			}
 
-				if (inimigo2.estados[i] == ACTIVE) {
+			for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
+				if(listaInimigo2.lista.get(0).estado[i] == ACTIVE){
 
 					/* verificando se inimigo saiu da tela */
+					if(	listaInimigo2.lista.get(0).coordenada_x[i] < -10 || listaInimigo2.lista.get(0).coordenada_x[i] > GameLib.WIDTH + 10 ) {
 
-					if (inimigo2.coordenada_x[i] < -10 || inimigo2.coordenada_x[i] > GameLib.WIDTH + 10) {
-						inimigo2.estados[i] = INACTIVE;
+						listaInimigo2.lista.get(0).estado[i] = INACTIVE;
+						listaInimigo2.lista.get(0).verificaSaidaTela();
+						if(listaInimigo2.lista.get(0).saiudaTela==true){
+							listaInimigo2.lista.remove(0);
+							listaInimigo2.addLista(currentTime,1);
+						}
 					}
 					else {
+
 						boolean shootNow = false;
-						double previousY = inimigo2.coordenada_y[i];
-						inimigo2.coordenada_x[i] += inimigo2.velocidade[i] * Math.cos(inimigo2.angulo[i]) * delta;
-						inimigo2.coordenada_y[i] += inimigo2.velocidade[i] * Math.sin(inimigo2.angulo[i]) * delta * (-1.0);
-						inimigo2.angulo[i] += inimigo2.velocidadeRotacao[i] * delta;
+						double previousY = listaInimigo2.lista.get(0).coordenada_y[i];
+
+						listaInimigo2.lista.get(0).coordenada_x[i] += listaInimigo2.lista.get(0).velocidade[i] * Math.cos(listaInimigo2.lista.get(0).angulo[i]) * delta;
+						listaInimigo2.lista.get(0).coordenada_y[i] += listaInimigo2.lista.get(0).velocidade[i] * Math.sin(listaInimigo2.lista.get(0).angulo[i]) * delta * (-1.0);
+						listaInimigo2.lista.get(0).angulo[i] += listaInimigo2.lista.get(0).velocidadeRotacao[i] * delta;
 
 						double threshold = GameLib.HEIGHT * 0.30;
 
-						if (previousY < threshold && inimigo2.coordenada_y[i] >= threshold) {
-							if (inimigo2.coordenada_x[i] < GameLib.WIDTH / 2) inimigo2.velocidadeRotacao[i] = 0.003;
-							else inimigo2.velocidadeRotacao[i] = -0.003;
+						if(previousY < threshold && listaInimigo2.lista.get(0).coordenada_y[i] >= threshold) {
+
+							if(listaInimigo2.lista.get(0).coordenada_x[i] < GameLib.WIDTH / 2) listaInimigo2.lista.get(0).velocidadeRotacao[i] = 0.003;
+							else listaInimigo2.lista.get(0).velocidadeRotacao[i] = -0.003;
 						}
 
-						if (inimigo2.velocidadeRotacao[i] > 0 && Math.abs(inimigo2.angulo[i] - 3 * Math.PI) < 0.05) {
-							inimigo2.velocidadeRotacao[i] = 0.0;
-							inimigo2.angulo[i] = 3 * Math.PI;
+						if(listaInimigo2.lista.get(0).velocidadeRotacao[i] > 0 && Math.abs(listaInimigo2.lista.get(0).angulo[i] - 3 * Math.PI) < 0.05){
+
+							listaInimigo2.lista.get(0).velocidadeRotacao[i] = 0.0;
+							listaInimigo2.lista.get(0).angulo[i] = 3 * Math.PI;
 							shootNow = true;
 						}
 
-						if (inimigo2.velocidadeRotacao[i] < 0 && Math.abs(inimigo2.angulo[i]) < 0.05) {
-							inimigo2.velocidadeRotacao[i] = 0.0;
-							inimigo2.angulo[i] = 0.0;
+						if(listaInimigo2.lista.get(0).velocidadeRotacao[i] < 0 && Math.abs(listaInimigo2.lista.get(0).angulo[i]) < 0.05){
+
+							listaInimigo2.lista.get(0).velocidadeRotacao[i] = 0.0;
+							listaInimigo2.lista.get(0).angulo[i] = 0.0;
 							shootNow = true;
 						}
 
-						if (shootNow) {
+						if(shootNow){
 
-							double[] angles = { Math.PI / 2 + Math.PI / 8, Math.PI / 2, Math.PI / 2 - Math.PI / 8 };
-							int[] freeArray = findFreeIndex(inimigoProjectile.estados, angles.length);
+							double [] angles = { Math.PI/2 + Math.PI/8, Math.PI/2, Math.PI/2 - Math.PI/8 };
+							int [] freeArray = findFreeIndex(inimigoProjectile.estados, angles.length);
 
-							for (int k = 0; k < freeArray.length; k++) {
+							for(int k = 0; k < freeArray.length; k++){
 
 								int free = freeArray[k];
-								if (free < inimigoProjectile.estados.length) {
-									double a = angles[k] + Math.random() * Math.PI / 6 - Math.PI / 12;
+
+								if(free < inimigoProjectile.estados.length){
+
+									double a = angles[k] + Math.random() * Math.PI/6 - Math.PI/12;
 									double vx = Math.cos(a);
 									double vy = Math.sin(a);
 
-									inimigoProjectile.coordenada_x[free] = inimigo2.coordenada_x[i];
-									inimigoProjectile.coordenada_y[free] = inimigo2.coordenada_y[i];
+									inimigoProjectile.coordenada_x[free] = listaInimigo2.lista.get(0).coordenada_x[i];
+									inimigoProjectile.coordenada_y[free] = listaInimigo2.lista.get(0).coordenada_y[i];
 									inimigoProjectile.velocidade_x[free] = vx * 0.30;
 									inimigoProjectile.velocidade_y[free] = vy * 0.30;
 									inimigoProjectile.estados[free] = 1;
@@ -493,62 +526,75 @@ public class Main {
 					}
 				}
 			}
-			/* inimigos tipo 3 */
 
-			for (int i = 0; i < inimigo3.estados.length; i++) {
+					/* inimigos tipo 3 */
 
-				if (inimigo3.estados[i] == EXPLODING) {
+			for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
-					if (currentTime > inimigo3.explosion_end[i]) {
+				if (listaInimigo3.lista.get(0).estado[i] == EXPLODING) {
+						listaInimigo3.lista.get(0).verificaExplosao();
 
-						inimigo3.estados[i] = INACTIVE;
+					if (currentTime > listaInimigo3.lista.get(0).explosion_end[i]) {
+
+						listaInimigo3.lista.get(0).estado[i] = INACTIVE;
+						if(	listaInimigo3.lista.get(0).verificaExplosao==true){
+							listaInimigo3.lista.remove(0);
+							listaInimigo3.addLista(currentTime,1);
+
+						}
 					}
 				}
+			}
+			for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
-				if (inimigo3.estados[i] == ACTIVE) {
+				if (listaInimigo3.lista.get(0).estado[i] == ACTIVE) {
 
 					/* verificando se inimigo saiu da tela */
 
-					if (inimigo3.coordenada_x[i] < -10
-							|| inimigo3.coordenada_x[i] > GameLib.WIDTH + 10) {
+					if (listaInimigo3.lista.get(0).coordenada_x[i] < -10|| listaInimigo3.lista.get(0).coordenada_x[i] > GameLib.WIDTH + 10) {
 
-						inimigo3.estados[i] = INACTIVE;
+						listaInimigo3.lista.get(0).estado[i] = INACTIVE;
+							listaInimigo3.lista.get(0).verificaSaidaTela();
+						if(listaInimigo3.lista.get(0).saiudaTela==true){
+							listaInimigo3.lista.remove(0);
+							listaInimigo3.addLista(currentTime,1);
+						}
 					}
 					else {
 						boolean shootNow = false;
-						double previousY = inimigo3.coordenada_y[i];
+						double previousY = listaInimigo3.lista.get(0).coordenada_y[i];
 
-						inimigo3.coordenada_x[i] += inimigo3.velocidade[i]
-								* Math.cos(inimigo3.angulo[i]) * delta;
-						inimigo3.coordenada_y[i] += inimigo3.velocidade[i]
-								* Math.sin(inimigo3.angulo[i]) * delta * (-1.0);
-						inimigo3.angulo[i] += inimigo3.velocidadeRotacao[i]
+						listaInimigo3.lista.get(0).coordenada_x[i] += listaInimigo3.lista.get(0).velocidade[i]
+								* Math.cos(listaInimigo3.lista.get(0).angulo[i]) * delta;
+						listaInimigo3.lista.get(0).coordenada_y[i] += listaInimigo3.lista.get(0).velocidade[i]
+								* Math.sin(listaInimigo3.lista.get(0).angulo[i]) * delta * (-1.0);
+						listaInimigo3.lista.get(0).angulo[i] += listaInimigo3.lista.get(0).velocidadeRotacao[i]
 								* delta;
 
 						double threshold = GameLib.HEIGHT * 0.30;
 
 						if (previousY < threshold
-								&& inimigo3.coordenada_y[i] >= threshold) {
+								&& listaInimigo3.lista.get(0).coordenada_y[i] >= threshold) {
 
-							if (inimigo3.coordenada_x[i] < GameLib.WIDTH / 2)
-								inimigo3.velocidadeRotacao[i] = 0.005;
+							if (listaInimigo3.lista.get(0).coordenada_x[i] < GameLib.WIDTH / 2)
+								listaInimigo3.lista.get(0).velocidadeRotacao[i] = 0.005;
 							else
-								inimigo3.velocidadeRotacao[i] = -0.005;
+								listaInimigo3.lista.get(0).velocidadeRotacao[i] = -0.005;
 						}
 
-						if (inimigo3.velocidadeRotacao[i] > 0
-								&& Math.abs(inimigo3.angulo[i] - 3 * Math.PI) < 0.05) {
+						if (listaInimigo3.lista.get(0).velocidadeRotacao[i] > 0
+								&& Math.abs(listaInimigo3.lista.get(0).angulo[i] - 3 * Math.PI) < 0.05) {
 
-							inimigo3.velocidadeRotacao[i] = 0.0;
-							inimigo3.angulo[i] = 4 * Math.PI;
+							listaInimigo3.lista.get(0).velocidadeRotacao[i] = 0.0;
+							listaInimigo3.lista.get(0).angulo[i] = 4 * Math.PI;
 							shootNow = true;
 						}
 
-						if (inimigo3.velocidadeRotacao[i] < 0
-								&& Math.abs(inimigo3.angulo[i]) < 0.05) {
+						if (listaInimigo3.lista.get(0).velocidadeRotacao[i] < 0
+								&& Math.abs(listaInimigo3.lista.get(0).angulo[i]) < 0.05) {
 
-							inimigo3.velocidadeRotacao[i] = 0.0;
-							inimigo3.angulo[i] = 0.0;
+							listaInimigo3.lista.get(0).velocidadeRotacao[i] = 0.0;
+							listaInimigo3.lista.get(0).angulo[i] = 0.0;
 							shootNow = true;
 						}
 
@@ -567,8 +613,8 @@ public class Main {
 									double vx = Math.cos(a);
 									double vy = Math.sin(a);
 
-									inimigoProjectile.coordenada_x[free] = inimigo3.coordenada_x[i];
-									inimigoProjectile.coordenada_y[free] = inimigo3.coordenada_y[i];
+									inimigoProjectile.coordenada_x[free] = listaInimigo3.lista.get(0).coordenada_x[i];
+									inimigoProjectile.coordenada_y[free] = listaInimigo3.lista.get(0).coordenada_y[i];
 									inimigoProjectile.velocidade_x[free] = vx * 0.05;
 									inimigoProjectile.velocidade_y[free] = vy * 0.05;
 									inimigoProjectile.estados[free] = 1;
@@ -580,7 +626,6 @@ public class Main {
 			}
 
 			/* verificando se novos inimigos (tipo 1) devem ser "lançados" */
-
 			if (currentTime > listaInimigo1.getnextEnemy1()) {
 				while (listaInimigo1.lista.size() < 5) {
 					listaInimigo1.addLista(currentTime, 1);
@@ -596,50 +641,54 @@ public class Main {
 				player.powerUp2.estadop2 = ACTIVE;
 
 			/* verificando se novos inimigos (tipo 2) devem ser "lançados" */
+			if(currentTime > listaInimigo2.lista.get(0).nextEnemy2){
 
-			if (currentTime > inimigo2.nextEnemy2) {
+				int free = findFreeIndex(listaInimigo2.lista.get(0).estado);
 
-				int free = findFreeIndex(inimigo2.estados);
+				if(free < listaInimigo2.lista.get(0).estado.length){
 
-				if (free < inimigo2.estados.length) {
+					listaInimigo2.lista.get(0).coordenada_x[free] = listaInimigo2.lista.get(0).spawnX;
+					listaInimigo2.lista.get(0).coordenada_y[free] = -10.0;
+					listaInimigo2.lista.get(0).velocidade[free] = 0.42;
+					listaInimigo2.lista.get(0).angulo[free] = (3 * Math.PI) / 2;
+					listaInimigo2.lista.get(0).velocidadeRotacao[free] = 0.0;
+					listaInimigo2.lista.get(0).estado[free] = ACTIVE;
 
-					inimigo2.coordenada_x[free] = inimigo2.spawnX;
-					inimigo2.coordenada_y[free] = -10.0;
-					inimigo2.velocidade[free] = 0.42;
-					inimigo2.angulo[free] = (3 * Math.PI) / 2;
-					inimigo2.velocidadeRotacao[free] = 0.0;
-					inimigo2.estados[free] = ACTIVE;
+					listaInimigo2.lista.get(0).count++;
 
-					inimigo2.count++;
+					if(listaInimigo2.lista.get(0).count < 10){
 
-					if (inimigo2.count < 10) inimigo2.nextEnemy2 = currentTime + 120;
+						listaInimigo2.lista.get(0).nextEnemy2 = currentTime + 120;
+					}
 					else {
-						inimigo2.count = 0;
-						inimigo2.spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.2 : GameLib.WIDTH * 0.8;
-						inimigo2.nextEnemy2 = (long) (currentTime + 3000 + Math .random() * 3000);
+
+						listaInimigo2.lista.get(0).count = 0;
+						listaInimigo2.lista.get(0).spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
+						listaInimigo2.lista.get(0).nextEnemy2 = (long) (currentTime + 7000 + Math.random() * 7000);
 					}
 				}
 			}
+
 			/* verificando se novos inimigos (tipo 3) devem ser "lançados" */
 
-			if (currentTime > inimigo3.nextEnemy3) {
+			if (currentTime > listaInimigo3.lista.get(0).nextEnemy3) {
 
-				int free = findFreeIndex(inimigo3.estados);
-				if (free < inimigo3.estados.length) {
-					inimigo3.coordenada_x[free] = inimigo3.spawnX;
-					inimigo3.coordenada_y[free] = -10.0;
-					inimigo3.velocidade[free] = 0.42;
-					inimigo3.angulo[free] = (3 * Math.PI) / 2;
-					inimigo3.velocidadeRotacao[free] = 0.0;
-					inimigo3.estados[free] = ACTIVE;
+				int free = findFreeIndex(listaInimigo3.lista.get(0).estado);
+				if (free < listaInimigo3.lista.get(0).estado.length) {
+					listaInimigo3.lista.get(0).coordenada_x[free] = listaInimigo3.lista.get(0).spawnX;
+					listaInimigo3.lista.get(0).coordenada_y[free] = -10.0;
+					listaInimigo3.lista.get(0).velocidade[free] = 0.32;
+					listaInimigo3.lista.get(0).angulo[free] = (3 * Math.PI) / 2;
+					listaInimigo3.lista.get(0).velocidadeRotacao[free] = 0.0;
+					listaInimigo3.lista.get(0).estado[free] = ACTIVE;
 
-					inimigo3.count++;
+					listaInimigo3.lista.get(0).count++;
 
-					if (inimigo3.count < 10) inimigo3.nextEnemy3 = currentTime;
+					if (listaInimigo3.lista.get(0).count < 10) listaInimigo3.lista.get(0).nextEnemy3 = currentTime;
 					else {
-						inimigo3.count = 0;
-						inimigo3.spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
-						inimigo3.nextEnemy3 = (long) (currentTime + 3000 + Math .random() * 3000);
+						listaInimigo3.lista.get(0).count = 0;
+						listaInimigo3.lista.get(0).spawnX = Math.random() > 0.5 ? GameLib.WIDTH * 0.4 : GameLib.WIDTH * 0.6;
+						listaInimigo3.lista.get(0).nextEnemy3 = (long) (currentTime + 8000 - Math .random() * 8000);
 					}
 				}
 			}
@@ -677,8 +726,8 @@ public class Main {
 			player.desenha(currentTime);
 			player.projectile.desenha();
 			inimigoProjectile.desenha();
-			inimigo2.desenha(currentTime);
-			inimigo3.desenha(currentTime);
+			listaInimigo2.getListInimigo2().get(0).desenha(currentTime);
+			listaInimigo3.getListInimigo3().get(0).desenha(currentTime);
 
 			for (int i = 0; i < listaInimigo1.lista.size(); i++)
 				listaInimigo1.getListInimigo1().get(i).desenha(currentTime);

@@ -11,9 +11,10 @@ public class ListInimigo1{
 
   public void addLista(long currentTime, int quantidadeinimigo1){
 
+  nextEnemy1=(long) (currentTime + 2000 - Math .random() * 2000);
   for(int i=0; i<=quantidadeinimigo1;i++){
     lista.add(new Inimigo1(1,Math.random() * (GameLib.WIDTH - 20.0) + 10.0,
-    -10.0, 0.20 + Math.random() * 0.15, 3 * Math.PI / 2, 0.0, currentTime,
+    -10.0, 0.13 + Math.random() * 0.15, 3 * Math.PI / 2, 0.0, currentTime,
     currentTime + 500, currentTime + 500, 9.0));
     }
   }
