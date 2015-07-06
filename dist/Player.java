@@ -18,8 +18,7 @@ public class Player implements Players{
 	public double explosion_end;
 	public long nextShot;
 
-	private Player(PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y,
-									double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot){
+	private Player(PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot){
 
 		this.powerUp2=powerUp2;
 		this.projectile=projectile;
