@@ -1,9 +1,9 @@
 import java.awt.Color;
 
-public class Player{
+public class Player implements Players{
 
 	PowerUp2 powerUp2;
-	
+
 	PlayerProjectile projectile;
 
 	public int estado;
@@ -44,7 +44,7 @@ public class Player{
 				if(currentTime > nextShot){
 
 
-					int free = GerenciamentoEstruturas.findFreeIndex(projectile.estadosProjetil);
+					int free = Main.findFreeIndex(projectile.estadosProjetil);
 
 					if(free < projectile.estadosProjetil.length){
 

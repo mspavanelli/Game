@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Inimigo1{
+public class Inimigo1 implements InimigoUnico{
 
   private int estado;
   private double coordenada_x;

@@ -1,5 +1,5 @@
 import java.util.*;
-public class ListInimigo1{
+public class ListInimigo1 implements ListaInimigo{
 
   List<Inimigo1> lista;
   long nextEnemy1;

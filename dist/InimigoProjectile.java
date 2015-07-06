@@ -1,11 +1,7 @@
 import java.awt.Color;
 
-public class InimigoProjectile{
+public class InimigoProjectile implements InimigoProjectiles{
 
-  //ProjectileState activeState;
-  //ProjectileState inactiveState;
-
-  //ProjectileState state;
 
   public int [] estados;
   public double [] coordenada_x;
@@ -25,23 +21,8 @@ public class InimigoProjectile{
     this.velocidade_y=velocidade_y;
     this.raio=raio;
 
-  //activeState = new ProjectileActiveState();
-  //inactiveState = new ProjectileInactiveState();
   }
 
-  /*
-  void setState(ProjectileState state){
-    this.state=state;
-  }
-
-  public ProjectileState getInactiveState(){
-    return this.inactiveState;
-  }
-
-  public ProjectileState getActiveState(){
-    return this.activeState;
-  }
-  */
   public void desenha(){
     for(int i = 0; i < estados.length; i++){
 

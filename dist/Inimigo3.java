@@ -1,5 +1,5 @@
 import java.awt.Color;
-public class Inimigo3{
+public class Inimigo3 implements InimigoComposto{
 
   boolean verificaExplosao;
   boolean saiudaTela;
@@ -15,7 +15,7 @@ public class Inimigo3{
   public double spawnX;
   public int count;
   public double raio;
-  public long nextEnemy;
+  public long nextEnemy3;
 
   public Inimigo3(boolean verificaExplosao,int [] estado,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
     double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
@@ -32,6 +32,8 @@ public class Inimigo3{
     this.spawnX=spawnX;
     this.count=count;
     this.raio=raio;
+
+
   }
   public void desenha(long currentTime){
     for(int i = 0; i < estado.length; i++){

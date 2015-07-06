@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class PlayerProjectile{
+public class PlayerProjectile implements PlayerProjectiles{
 
 	PowerUp1 powerUp1;
 	public int [] estadosProjetil;
@@ -16,7 +16,6 @@ public class PlayerProjectile{
 		this.velocidade_x=velocidade_x;
 		this.velocidade_y=velocidade_y;
 		this.powerUp1=powerUp1;
-
 	}
 
 	public void desenha(){
