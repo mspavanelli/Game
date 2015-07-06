@@ -1,14 +1,14 @@
 import java.awt.Color;
 
 public class PlayerProjectile implements PlayerProjectiles{
-
+	//Atributos
 	PowerUp1 powerUp1;
 	public int [] estadosProjetil;
 	public double [] coordenada_x;
 	public double [] coordenada_y;
 	public double [] velocidade_x;
 	public double [] velocidade_y;
-
+	//Construtor
 	public PlayerProjectile(int [] estadosProjetil, double [] coordenada_x, double [] coordenada_y, double [] velocidade_x, double [] velocidade_y, PowerUp1 powerUp1){
 		this.estadosProjetil=estadosProjetil;
 		this.coordenada_x=coordenada_x;
@@ -17,12 +17,12 @@ public class PlayerProjectile implements PlayerProjectiles{
 		this.velocidade_y=velocidade_y;
 		this.powerUp1=powerUp1;
 	}
-
+	//Método que desnha o projétil
 	public void desenha(){
 
 
 		for(int i = 0; i < estadosProjetil.length; i++){
-
+			//se o powerUp1 estiver desativado
 			if(estadosProjetil[i] == 1 && powerUp1.estado==false){
 
 				GameLib.setColor(Color.GREEN);
@@ -30,6 +30,7 @@ public class PlayerProjectile implements PlayerProjectiles{
 				GameLib.drawLine(coordenada_x[i] - 1,coordenada_y[i] - 3,coordenada_x[i] - 1,coordenada_y[i] + 3);
 				GameLib.drawLine(coordenada_x[i] + 1,coordenada_y[i] - 3, coordenada_x[i] + 1, coordenada_y[i] + 3);
 			}
+		//se o powerUp estiver ativo
 		 if(estadosProjetil[i] == 1 && powerUp1.estado==true){
 			 GameLib.setColor(Color.GREEN);
 			 GameLib.drawCircle(coordenada_x[i], coordenada_y[i] - 5,9.5);
