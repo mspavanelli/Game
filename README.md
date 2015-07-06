@@ -1,6 +1,6 @@
 # Game
 
-**Status**: **95%** concluído
+![Ui](https://img.shields.io/badge/Status-Conclu%C3%ADdo-green.svg)
 
 ## Organização
 
@@ -21,18 +21,19 @@
 
 - [x] Análise
 - [x] Separar o código em classes
-- [ ] Aplicar Padrões
+- [x] Aplicar Padrões
 	- [x] Singleton	(Player)
 	- [x] Façade	(Colisões)
+	- [x] Strategy	(PowerUps)
 - [x] Criar novo inimigo
 - [x] Power-ups
 
 ### Relatório
 
-- [ ] Críticas ao código original
-- [ ] Descrição e justificativa da nova estrutura remodelada
-- [ ] Descrição do uso da **API de Coleções**
-- [ ] Descrição e justificativa de aplicação dos **padrões de projeto**
+- [x] Críticas ao código original
+- [x] Descrição e justificativa da nova estrutura remodelada
+- [x] Descrição do uso da **API de Coleções**
+- [x] Descrição e justificativa de aplicação dos **padrões de projeto**
 
 ___
 Mais informações no PDF
