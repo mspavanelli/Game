@@ -2,8 +2,10 @@ import java.awt.Color;
 
 public class Player implements Players{
 
-	PowerUp2 powerUp2;
+	// Singleton
+	private static Player instancia;
 
+	PowerUp2 powerUp2;
 	PlayerProjectile projectile;
 
 	public int estado;
@@ -16,7 +18,7 @@ public class Player implements Players{
 	public double explosion_end;
 	public long nextShot;
 
-	public Player(PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y,
+	private Player(PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y,
 									double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot){
 
 		this.powerUp2=powerUp2;
@@ -30,6 +32,12 @@ public class Player implements Players{
 		this.explosion_start=explosion_start;
 		this.explosion_end=explosion_end;
 		this.nextShot=nextShot;
+	}
+
+	public static Player getInstance( PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y, double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot) {
+		if ( instancia == null )
+			instancia = new Player(powerUp2, projectile, estado, coordenada_x, coordenada_y, velocidade_x, velocidade_y, raio, explosion_start, explosion_end, nextShot );
+		return instancia;
 	}
 
 	public void controleMovimetoPlayer(long currentTime, long delta , boolean running){
