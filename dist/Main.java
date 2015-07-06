@@ -12,7 +12,7 @@ public class Main {
 	public static int findFreeIndex(int[] stateArray) {
 		int i;
 		for (i = 0; i < stateArray.length; i++)
-			if (stateArray[i] == INACTIVE) break;
+			if (stateArray[i] == 0) break;
 		return i;
 	}
 
@@ -24,7 +24,7 @@ public class Main {
 
 		for (i = 0, k = 0; i < stateArray.length && k < amount; i++) {
 
-			if (stateArray[i] == INACTIVE) {
+			if (stateArray[i] == 0) {
 
 				freeArray[k] = i;
 				k++;
