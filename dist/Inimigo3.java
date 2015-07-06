@@ -1,6 +1,6 @@
 import java.awt.Color;
 public class Inimigo3 implements InimigoComposto{
-
+  //Atributos
   boolean verificaExplosao;
   boolean saiudaTela;
 
@@ -16,7 +16,7 @@ public class Inimigo3 implements InimigoComposto{
   public int count;
   public double raio;
   public long nextEnemy3;
-
+  //Construtor
   public Inimigo3(boolean verificaExplosao,int [] estado,double [] coordenada_x,double [] coordenada_y,double [] velocidade,
     double [] angulo,double [] velocidadeRotacao,double [] explosion_start,double [] explosion_end,
     double spawnX,int count,double raio){
@@ -63,6 +63,7 @@ public class Inimigo3 implements InimigoComposto{
       }
     }
   }
+  //Método que verifica que se o inimigo explodiu por completo
   public void verificaExplosao(){
     int  numerodeexplosoes = 0;
     for(int i=0; i<estado.length; i++){
@@ -73,7 +74,7 @@ public class Inimigo3 implements InimigoComposto{
     //System.out.println(numerodeexplosoes);
     if(numerodeexplosoes==10) verificaExplosao = true;
   }
-
+  //método que verifica se o inimigo saiu da tela por completo
   public void verificaSaidaTela(){
     int verificasaida=0;
     for(int i=0; i<estado.length; i++){

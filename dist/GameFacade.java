@@ -1,5 +1,6 @@
 import java.util.*;
 public class GameFacade{
+		//Declaração de atributos da classe
 		ListInimigo1 listaInimigo1;
 		ListInimigo2 listaInimigo2;
 		ListInimigo3 listaInimigo3;
@@ -7,14 +8,13 @@ public class GameFacade{
 		InimigoProjectile inimigoProjectile;
 		ArrayList<PrimeiroPlano> primeiroPlano;
 		ArrayList<SegundoPlano> segundoPlano;
-
+		//metodos auxíliares	
 		public static int findFreeIndex(int[] stateArray) {
 			int i;
 			for (i = 0; i < stateArray.length; i++)
 				if (stateArray[i] == 0) break;
 			return i;
 		}
-
 		public static int[] findFreeIndex(int[] stateArray, int amount) {
 
 			int i, k;
@@ -32,7 +32,7 @@ public class GameFacade{
 
 			return freeArray;
 		}
-
+		//construtor da classe
 		public GameFacade(ListInimigo1 listaInimigo1, ListInimigo2 listaInimigo2, ListInimigo3 listaInimigo3, Player player, InimigoProjectile inimigoProjectile, ArrayList<PrimeiroPlano> primeiroPlano, ArrayList<SegundoPlano> segundoPlano){
 				this.listaInimigo1=listaInimigo1;
 				this.listaInimigo2=listaInimigo2;
@@ -42,16 +42,16 @@ public class GameFacade{
 				this.primeiroPlano=primeiroPlano;
 				this.segundoPlano=segundoPlano;
 		}
-
+		
+		//Nos métodos abaixo os estados sao definidos pelos inteiros: 0(inativo),1(ativo),2(explodindo)
+		
 		public void verificaColisoes(long currentTime){
 
 						/***************************/
 						/* Verificação de colisões */
 						/***************************/
-
+						
 						if (player.estado == 1) {
-
-							/* Laços que podem ser simplificados */
 
 							/* colisões player, player com escudo - projeteis (inimigo) */
 
@@ -60,23 +60,28 @@ public class GameFacade{
 								double dx = inimigoProjectile.coordenada_x[i] - player.coordenada_x;
 								double dy = inimigoProjectile.coordenada_y[i] - player.coordenada_y;
 								double dist = Math.sqrt(dx * dx + dy * dy);
-
+								// se ocorrer a colisão e o escudo(powerUp2) estiver desativado
 								if (dist < (player.raio + inimigoProjectile.raio) * 0.8 && player.powerUp2.estado2 == false) {
-
 									player.estado = 2;
 									player.explosion_start = currentTime;
 									player.explosion_end = currentTime + 2000;
 								}
+								//se ocorrer a colisão e o escudo(raio do player é aumentado em 15.1) estiver ativo
 								else if (dist < (player.raio + 15.1 + inimigoProjectile.raio) * 0.8 && player.powerUp2.estado2 == true) {
+									//player continua ativo
 									player.estado = 1;
+									//escudo desativado
 									player.powerUp2.estado2 = false;
+									//projétil inimigo desativado
 									inimigoProjectile.estados[i] = 0;
+									//projetil inimigo sai da tela
 									inimigoProjectile.coordenada_y[i] = GameLib.HEIGHT;
 
 								}
 							}
 
 							/* colisões player, player com escudo(powerUp2) - inimigos */
+							//colisão com o inimigo do tipo 1
 							for (int i = 0; i < listaInimigo1.lista.size(); i++) {
 
 								double dx = listaInimigo1.getListInimigo1().get(i).getCoordenadax() - player.coordenada_x;
@@ -88,8 +93,11 @@ public class GameFacade{
 									player.explosion_start = currentTime;
 									player.explosion_end = currentTime + 2000;
 								}
+								//se o inimigo colidir com o escudo
 								else if (dist < (player.raio + 15.1 + listaInimigo1.getListInimigo1().get(i).getRaio()) * 0.8 && player.powerUp2.estado2 == true) {
+									//player continua ativo
 									player.estado = 1;
+									//escudo desativado
 									player.powerUp2.estado2 = false;
 								}
 							}
@@ -98,10 +106,13 @@ public class GameFacade{
 							double dxpu1 = player.projectile.powerUp1.coordenada_x - player.coordenada_x;
 							double dypu1 = player.projectile.powerUp1.coordenada_y - player.coordenada_y;
 							double distpu1 = Math.sqrt(dxpu1 * dxpu1 + dypu1 * dypu1);
-
+							//se colidir como powerUp1
 							if (distpu1 < (player.raio + player.projectile.powerUp1.raio) * 0.8) {
+								//o ícone do powerUp1 é desativado
 								player.projectile.powerUp1.estadop1 = 0;
+								//o powerUp1 é ativado
 								player.projectile.powerUp1.estado = true;
+								//O ícone sai da tela
 								player.projectile.powerUp1.coordenada_y = GameLib.HEIGHT;
 							}
 							/* colisão player - powerUp2 */
@@ -116,6 +127,8 @@ public class GameFacade{
 								player.powerUp2.estado2 = true;
 								player.powerUp2.coordenada_y = GameLib.HEIGHT;
 							}
+							
+							//Colisão com o inimigo do tipo 2
 							for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
 								double dx = listaInimigo2.lista.get(0).coordenada_x[i] - player.coordenada_x;
@@ -134,7 +147,7 @@ public class GameFacade{
 								}
 							}
 
-
+							//Colisão com o inimigo do tipo 3
 							for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
 								double dx = listaInimigo3.lista.get(0).coordenada_x[i] - player.coordenada_x;
@@ -156,9 +169,10 @@ public class GameFacade{
 						}
 
 						/* colisões projeteis (player) - inimigos */
+						//se o powerUp1(tiro grosso) estiver desativado
 						if (player.projectile.powerUp1.estado == false) {
 							for (int k = 0; k < player.projectile.estadosProjetil.length; k++) {
-
+								//colisão com o inimigo de tipo 1	
 								for (int i = 0; i < listaInimigo1.lista.size(); i++) {
 
 									if (listaInimigo1.getListInimigo1().get(i).getEstado() == 1) {
@@ -174,7 +188,7 @@ public class GameFacade{
 										}
 									}
 								}
-
+								//Colisão com o inimigo de tipo 2
 								for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
 									if(listaInimigo2.lista.get(0).estado[i] == 1){
@@ -191,7 +205,7 @@ public class GameFacade{
 										}
 									}
 								}
-
+								//colisão com o inimigo de tipo 3
 								for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
 									if (listaInimigo3.lista.get(0).estado[i] == 1) {
@@ -209,10 +223,11 @@ public class GameFacade{
 								}
 							}
 						}
+						//se o tiro grosso estiver ativo
 						else if (player.projectile.powerUp1.estado == true) {
 
 							for (int k = 0; k < player.projectile.estadosProjetil.length; k++) {
-
+								//colisao com o inimigo de tipo 1
 								for (int i = 0; i < listaInimigo1.lista.size(); i++) {
 
 									if (listaInimigo1.getListInimigo1().get(i).getEstado() == 1) {
@@ -220,7 +235,7 @@ public class GameFacade{
 										double dx = listaInimigo1.getListInimigo1().get(i).getCoordenadax() - player.projectile.coordenada_x[k];
 										double dy = listaInimigo1.getListInimigo1().get(i).getCoordenaday() - player.projectile.coordenada_y[k];
 										double dist = Math.sqrt(dx * dx + dy * dy);
-
+										//o novo raio do tiro é igual ao raio do ícone do powerUp1 -2, almentando o seu alcance
 										if (dist < player.projectile.powerUp1.raio - 2 + listaInimigo1.getListInimigo1().get(i).getRaio() * 0.8) {
 											listaInimigo1.getListInimigo1().get(i).setEstado(2);
 											listaInimigo1.getListInimigo1().get(i).setExplosionS(currentTime);
@@ -228,7 +243,7 @@ public class GameFacade{
 										}
 									}
 								}
-
+								//colisao com o inimigo de tipo 2
 								for(int i = 0; i < listaInimigo2.lista.get(0).estado.length; i++){
 
 									if(listaInimigo2.lista.get(0).estado[i] == 1){
@@ -245,7 +260,7 @@ public class GameFacade{
 										}
 									}
 								}
-
+								//colisao com o inimigo de tipo 3
 								for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
 									if (listaInimigo3.lista.get(0).estado[i] == 1) {
@@ -469,7 +484,7 @@ public class GameFacade{
 				}
 			}
 
-					/* inimigos tipo 3 */
+			/* inimigos tipo 3 */
 
 			for (int i = 0; i < listaInimigo3.lista.get(0).estado.length; i++) {
 
@@ -648,6 +663,7 @@ public class GameFacade{
 			}
 
 		}
+		//metodo que permite o controle do player
 		public boolean verificaControlePlayer(boolean running, long currentTime, long delta){
 
 			player.controleMovimetoPlayer(currentTime, delta, running);
@@ -655,23 +671,27 @@ public class GameFacade{
 				return false;
 			return true;
 		}
-
+		//metodo que desenha a cena
 		public void desenhaCena(long currentTime, long delta){
+			//desenha o primeiro plano
 			PrimeiroPlano.count += PrimeiroPlano.speed * delta;
 			for (PrimeiroPlano pp : primeiroPlano) pp.desenha(currentTime);
-
+			//desenha o segundo plano
 			SegundoPlano.count += SegundoPlano.speed * delta;
 			for (SegundoPlano sp : segundoPlano) sp.desenha(currentTime);
-
+			
+			//desenha o player
 			player.desenha(currentTime);
+			//desenha o projétil do player
 			player.projectile.desenha();
+			//desenha os projeteis dos inimigos
 			inimigoProjectile.desenha();
+			//desenho dos inimigos
 			listaInimigo2.getListInimigo2().get(0).desenha(currentTime);
 			listaInimigo3.getListInimigo3().get(0).desenha(currentTime);
-
 			for (int i = 0; i < listaInimigo1.lista.size(); i++)
 				listaInimigo1.getListInimigo1().get(i).desenha(currentTime);
-
+			//desenho dos icones dos powerUp's
 			player.projectile.powerUp1.desenha();
 			player.powerUp2.desenha();
 
