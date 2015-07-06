@@ -4,7 +4,7 @@ public class Player implements Players{
 
 	// Singleton
 	private static Player instancia;
-
+	//Atributos
 	PowerUp2 powerUp2;
 	PlayerProjectile projectile;
 
@@ -17,7 +17,7 @@ public class Player implements Players{
 	public double explosion_start;
 	public double explosion_end;
 	public long nextShot;
-
+	//Construtor
 	private Player(PowerUp2 powerUp2, PlayerProjectile projectile, int estado, double coordenada_x, double coordenada_y,
 									double velocidade_x, double velocidade_y, double raio, double explosion_start, double explosion_end, long nextShot){
 
@@ -82,6 +82,7 @@ public class Player implements Players{
 		else if (powerUp2.estado2==false){
 			GameLib.setColor(Color.BLUE);
 			GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
+		//se o escudo(powerUp2) estiver ativo
 		} else {
 			GameLib.setColor(Color.BLUE);
 			GameLib.drawPlayer(coordenada_x, coordenada_y, raio);
