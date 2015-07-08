@@ -1,6 +1,6 @@
 # Game
 
-![Ui](https://img.shields.io/badge/Status-Conclu%C3%ADdo-green.svg)
+![Concluído](https://img.shields.io/badge/Status-Conclu%C3%ADdo-green.svg)
 
 ## Organização
 
@@ -14,7 +14,7 @@
 - [x] Criar novo inimigo
 - [x] Criar PowerUps (desenho e comportamentos)
 - [x] Simplificação dos laços (Façade)
-- [ ] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
+- [x] Escrever relatório parcial (o que foi feito até agora + estratégias futuras)
 
 
 ### Código
